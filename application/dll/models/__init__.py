@@ -1,8 +1,6 @@
-
-from sqlalchemy import Column, Integer, String, Date, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-
-from app.data.db import Base
+from application.dll.db import Base
 
 
 class CustomerCarsModels(Base):
@@ -83,6 +81,7 @@ class OrderDetails(Base):
     price_each = Column(Integer, nullable=False)
     orders = relationship('Orders')
     products = relationship('Products')
+
 
 class Orders(Base):
     __tablename__ = 'orders'
@@ -165,5 +164,3 @@ class SuppliersOrdersFrom(Base):
     supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'))
     manufacturer = relationship('Manufacturers')
     suppliers = relationship('Suppliers')
-
-
