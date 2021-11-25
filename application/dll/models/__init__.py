@@ -91,7 +91,6 @@ class Orders(Base):
     delivery_date = Column(DateTime, nullable=False)
     customer_id = Column(Integer, ForeignKey('customers.customer_id'))
     employee_id = Column(Integer, ForeignKey('employee.employee_id'))
-    buy_datetime = Column(DateTime, nullable=False)
     customers = relationship('Customers')
     employee = relationship('Employees')
 
@@ -152,7 +151,6 @@ class Suppliers(Base):
     address = Column(String(45), nullable=False)
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
-    phone = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
     contact_persons = relationship('Contact_persons')
 
@@ -160,7 +158,7 @@ class Suppliers(Base):
 class SuppliersOrdersFrom(Base):
     __tablename__ = 'suppliers_orders_from'
 
-    manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'))
-    supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'))
+    manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
+    supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'), primary_key=True)
     manufacturer = relationship('Manufacturers')
     suppliers = relationship('Suppliers')
