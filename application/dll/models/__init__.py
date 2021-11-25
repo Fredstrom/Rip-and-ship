@@ -100,7 +100,7 @@ class Products(Base):
 
     product_id = Column(Integer, primary_key=True, autoincrement=True)
     product_name = Column(String(45), nullable=False)
-    description = Column(String(45), nullable=False)
+    description = Column(String(45))
     price_in = Column(Integer, nullable=False)
 
 

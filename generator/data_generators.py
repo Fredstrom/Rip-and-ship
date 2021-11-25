@@ -5,7 +5,7 @@ from application.bll.controllers import customer_controller, employee_controller
     customer_cars_controller, contact_persons_controller, manufacturers_controller, orders_controller, \
     orderdetails_controller, product_controller, products_fit_models_controller, orders_from_manufacturers_controller, \
     orders_from_suppliers_controller, storages_controller, suppliers_controller, suppliers_orders_from_controller
-from generator.json_to_list import customers, employees, offices, cars, contact_persons, manufacturers, suppliers
+from generator.json_to_list import customers, employees, offices, cars, contact_persons, manufacturers, suppliers, products
 
 
 def generate_order_dates(start, end):
@@ -21,10 +21,13 @@ def generate_order_dates(start, end):
         time_between_dates = end - start
         days_between_dates = time_between_dates.days
         random_number_of_days = random.randrange(days_between_dates)
+
         dates.append(start + datetime.timedelta(days=random_number_of_days, hours=random.randrange(0, 12)
                                                 , minutes=random.randrange(0, 60), seconds=random.randrange(0, 60)))
-        delivery.append(dates[i] + datetime.timedelta(days=dates[i].day + 5 if dates[i].day + 5 < 28 else 5, hours=dates[i].hour
-                                                   , minutes=dates[i].minute, seconds=dates[i].second))
+
+        delivery.append(dates[i] + datetime.timedelta(days=dates[i].day + 5 if dates[i].day + 5 < 28 else 5,
+                                                      hours=dates[i].hour, minutes=dates[i].minute,
+                                                      seconds=dates[i].second))
 
     return dates, delivery
 
@@ -111,7 +114,7 @@ def generate_order_details():
             'order_id': random.randrange(1, 500),
             'product_id': x[i]['product_id'],
             'quantity': random.randrange(1, 50),
-            'price_each': int(x[i]['price_in'] * 1.25)
+            'price_each': int(x[i]['price_in'] * 1.5)
         }
         orderdetails_controller.create_orderdetails(details)
 
