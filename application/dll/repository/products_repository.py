@@ -6,3 +6,6 @@ def create_product(product):
     products = Products(**product)
     session.add(products)
     session.commit()
+
+def get_all_products():
+    return session.query(Products).all()

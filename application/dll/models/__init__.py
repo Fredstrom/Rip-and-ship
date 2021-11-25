@@ -59,7 +59,7 @@ class Manufacturers(Base):
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
-    contact_persons = relationship('Contact_persons')
+    contact_persons = relationship('ContactPersons')
 
 
 class Offices(Base):
@@ -90,7 +90,7 @@ class Orders(Base):
     order_date = Column(DateTime, nullable=False)
     delivery_date = Column(DateTime, nullable=False)
     customer_id = Column(Integer, ForeignKey('customers.customer_id'))
-    employee_id = Column(Integer, ForeignKey('employee.employee_id'))
+    employee_id = Column(Integer, ForeignKey('employees.employee_id'))
     customers = relationship('Customers')
     employee = relationship('Employees')
 
@@ -103,6 +103,9 @@ class Products(Base):
     description = Column(String(45))
     price_in = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return f"{self.product_id},{self.price_in}"
+
 
 class ProductsFitModels(Base):
     __tablename__ = 'products_fits_models'
@@ -110,13 +113,13 @@ class ProductsFitModels(Base):
     product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
     vin_no = Column(Integer, ForeignKey('customer_cars_models.vin_no'), primary_key=True)
     products = relationship('Products')
-    cars = relationship('Customer_cars_models')
+    cars = relationship('CustomerCarsModels')
 
 
 class OrdersFromManufacturers(Base):
     __tablename__ = 'orders_from_manufacturers'
 
-    manufacturers_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
+    manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
     product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
     products = relationship('Products')
     manufacturers = relationship('Manufacturers')
@@ -137,9 +140,8 @@ class Storages(Base):
     shelf_id = Column(Integer, primary_key=True, autoincrement=True)
     units_in_stock = Column(Integer, nullable=False)
     capacity = Column(Integer, nullable=False)
-    buy_price = Column(Integer, nullable=False)
     TRIGGERS = Column(String(45), nullable=True)
-    products_id = Column(Integer, ForeignKey('products.product_id'))
+    product_id = Column(Integer, ForeignKey('products.product_id'))
     products = relationship('Products')
 
 
@@ -152,7 +154,7 @@ class Suppliers(Base):
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
-    contact_persons = relationship('Contact_persons')
+    contact_persons = relationship('ContactPersons')
 
 
 class SuppliersOrdersFrom(Base):

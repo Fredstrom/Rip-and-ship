@@ -1,10 +1,11 @@
 import datetime
 import random
 
-from application.bll.controllers import customer_controller, employee_controller, office_controller, \
+from application.bll.controllers import employee_controller, office_controller, \
     customer_cars_controller, contact_persons_controller, manufacturers_controller, orders_controller, \
     orderdetails_controller, product_controller, products_fit_models_controller, orders_from_manufacturers_controller, \
-    orders_from_suppliers_controller, storages_controller, suppliers_controller, suppliers_orders_from_controller
+    orders_from_suppliers_controller, storages_controller, suppliers_controller, suppliers_orders_from_controller, \
+    customer_controller
 from generator.json_to_list import customers, employees, offices, cars, contact_persons, manufacturers, suppliers, products
 
 
@@ -44,18 +45,6 @@ def generate_cars():
         }
         customer_cars_controller.create_customer_car(car)
 
-
-def generate_contact_persons():
-    for i in range(len(contact_persons)):
-        contact_person = {
-            'first_name': contact_persons[i]['first_name'],
-            'last_name': contact_persons[i]['last_name'],
-            'email': contact_persons[i]['email'],
-            'phone': contact_persons[i]['phone'],
-        }
-        contact_persons_controller.create_contact_person(contact_person)
-
-
 def generate_customers():
     for i in range(len(customers)):
         customer = {
@@ -69,6 +58,18 @@ def generate_customers():
             'email': customers[i]['email']
         }
         customer_controller.create_customer(customer)
+
+
+
+def generate_contact_persons():
+    for i in range(len(contact_persons)):
+        contact_person = {
+            'first_name': contact_persons[i]['first_name'],
+            'last_name': contact_persons[i]['last_name'],
+            'email': contact_persons[i]['email'],
+            'phone': contact_persons[i]['phone'],
+        }
+        contact_persons_controller.create_contact_person(contact_person)
 
 
 def generate_employees():
@@ -107,14 +108,18 @@ def generate_offices():
 
 
 def generate_order_details():
-    x = [random.choice(products) for _ in range(1000)]
+    x = product_controller.get_all_product()
+    x = [i for i in x]
+    x = [str(i).split(',') for i in x]
 
-    for i in range(1000):
+
+    for i in range(500):
+        y = random.choice(x)
         details = {
             'order_id': random.randrange(1, 500),
-            'product_id': x[i]['product_id'],
+            'product_id': int(y[0]),
             'quantity': random.randrange(1, 50),
-            'price_each': int(x[i]['price_in'] * 1.5)
+            'price_each': int(int(y[1]) * 1.5)
         }
         orderdetails_controller.create_orderdetails(details)
 
@@ -170,15 +175,19 @@ def generate_orders_from_suppliers():
 
 
 def generate_storages():
+    x = product_controller.get_all_product()
+    x = [i for i in x]
+    x = [str(i).split(',') for i in x]
+
     for i in range(500):
+        y = random.choice(x)
+
         units = random.randrange(0, 100)
-        product = products[random.randrange(1, len(products))]
         storage = {
             'units_in_stock': units,
             'capacity': random.randrange(units, units + 100),
-            'buy_price': product['price_in'],
             'TRIGGERS': '404 NOT FOUND',
-            'products_id': product['product_id']
+            'product_id': int(y[0])
         }
         storages_controller.create_storages(storage)
 
@@ -199,14 +208,8 @@ def generate_suppliers_orders_from():
     for i in range(len(suppliers)):
         orders_from = {
             'manufacturer_id': random.randrange(1, len(manufacturers)),
-            'supplier_id': suppliers[i]['supplier_id']
+            'supplier_id': random.randrange(1, len(suppliers))
         }
         suppliers_orders_from_controller.create_suppliers_orders_from(orders_from)
 
 
-def main():
-    pass
-
-
-if __name__ == '__main__':
-    main()
