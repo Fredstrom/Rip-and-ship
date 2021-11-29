@@ -1,50 +1,37 @@
 import PySimpleGUI as sg
 
+sg.theme("Dark Green 4")
 data = [
     ["Anders", "Testsson", "Testgatan 1", "024-224934", "Test@epost.se"],
     ['Berit', "Testberg", 'Storgatan 22', '202192392', 'Berit@telia.se'],
-    ["ny kund", "bla bla", "bla bla"],
+    ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bla bla", "bla bla"],
 
 ]
-button = {'size': (10, 2),
-          'font': ('Roboto Mono', 10, 'bold'),
-          'button_color': ("white", "#000000")}
-
-button2 = {'size': (5, 1),
-           'font': ('Roboto Mono', 8),
-           'button_color': ("black", "#474EAA")}
+button = {'size': (10, 2), 'font': ('Helvetica', 15, 'bold')}
+button2 = {'font': ('Helvetica', 12, 'bold')}
+tf = {'size': (10, 1), 'font': ("Helvetica", 12, 'bold')}
+h1 = {'size': (30, 1),'justification': 'c','font':('Helvetica', 28, 'bold')}
 
 
 def frontpage_window():
     layout = [
-        [sg.Text('Rip and Ship',
-                 size=(30, 1),
+        [sg.Text('Rip and Ship', **h1)] ,
+        [sg.Text('Welcome to the employee portal, please select which table to view',
+                 size=(30, 2),
                  justification='c',
-                 background_color="#54C5C9",
-                 text_color='black',
-                 font=('Helvetica', 30, 'bold'))],
-
-        [sg.Text('Search engine',
-                 size=(30, 1),
-                 justification='c',
-                 background_color="#54C5C9",
-                 text_color='black',
-                 font=('Arial', 15, 'bold'))],
-
+                 font=('Helvetica', 12))],
         [sg.Text('        ',
                  size=(30, 1),
                  justification='c',
-                 background_color="#54C5C9",
-                 text_color='black',
-                 font=('Arial', 15, 'bold'))],
+                 font=('Helvetica', 15, 'bold'))],
 
         [sg.Button('Customers', **button),
          sg.Button('Orders', **button),
-         sg.Button('Inventory', **button)]]
+         sg.Button('Inventory', **button)]
+    ]
 
     return sg.Window('Rip and Ship', layout,
                      finalize=True,
-                     background_color="#54C5C9",
                      size=(500, 400),
                      resizable=True,
                      element_justification='center')
@@ -53,36 +40,29 @@ def frontpage_window():
 def customer_window():
     header_list = ["First Name", "Last Name", "Address", "Phone", "e-mail"]
     layout = [
-        [sg.Button('Back'),
+        [sg.Button('Back', **button2),
 
-         sg.Text('Customers',
-                 justification="c",
-                 size=(15, 1),
-                 background_color="#54C5C9",
-                 text_color='black',
-                 font=('Arial', 30, 'bold')),
-
-         sg.Text("",
-                 size=10,
-                 background_color="#54C5C9")
+         sg.Text('Customers',**h1),
+         sg.Text("", **tf)
          ],
-
         [sg.Table(values=data,
                   headings=header_list,
                   auto_size_columns=False,
-                  background_color="#54C5C9",
-                  num_rows=min(25, len(data)))],
-
-        [sg.Button('Add Customer'),
-         sg.Button('Remove Customer'),
-         sg.Button('Update Customer')
-         ]
+                  def_col_width=12,
+                  num_rows=min(25, len(data)),
+                  font="Helvetica",
+                  justification='c')
+         ],
+        [
+            sg.Button('Add Customer', **button2),
+            sg.Button('Remove Customer', **button2),
+            sg.Button('Update Customer', **button2)
+        ]
     ]
 
     return sg.Window('Customers', layout,
                      finalize=True,
-                     background_color="#54C5C9",
-                     size=(500, 400),
+                     size=(900, 600),
                      resizable=True,
                      element_justification='center')
 
@@ -91,14 +71,11 @@ def order_window():
     data = []
     header_list = []
     layout = [
-        [sg.Text('Orders',
-                 size=(30, 1),
-                 justification='c',
-                 background_color="#54C5C9",
-                 text_color='black',
-                 font=('Arial', 30, 'bold'))],
+        [
+            sg.Text('Orders', **h1)
+        ],
 
-        [sg.Button('Back')],
+        [sg.Button('Back', **button2)],
 
         [sg.Table(values=data,
                   headings=header_list,
@@ -107,7 +84,6 @@ def order_window():
     ]
     return sg.Window('Orders', layout,
                      finalize=True,
-                     background_color="#54C5C9",
                      size=(500, 400),
                      resizable=True,
                      element_justification='center')
@@ -115,73 +91,34 @@ def order_window():
 
 def inventory_window():
     layout = [
-        [sg.Text('Inventory',
-                 size=(30, 1),
-                 justification='c',
-                 background_color="#54C5C9",
-                 text_color='black',
-                 font=('Arial', 30, 'bold'))],
+        [sg.Text('Inventory', **h1)],
 
-        [sg.Button('Back')]
+        [sg.Button('Back', **button2)]
     ]
     return sg.Window('Inventory', layout,
                      finalize=True,
-                     background_color="#54C5C9",
                      size=(500, 400),
                      resizable=True,
                      element_justification='center')
 
 
 def add_customer_window():
+
+
     layout = [
-        # Header
-        [sg.Text("Add Customer",
-                 size=(30, 1),
-                 justification='c',
-                 background_color="#54C5C9",
-                 font=('Arial', 30, 'bold'),
-                 text_color='black')],
-        # H1
-        [sg.Text("Customer First Name:",
-                 size=(20, 1),
-                 background_color="#54C5C9",
-                 text_color='black'),
-         # I1
-         sg.InputText("", size=(20, 1))],
+        [sg.Text('First Name', **tf), sg.In(key="first_name")],
+        [sg.Text('Last Name:', **tf), sg.In(key="last_name")],
+        [sg.Text('Address: ', **tf), sg.In(key="address")],
+        [sg.Text('City: ', **tf), sg.In(key="city")],
+        [sg.Text('Zip-code: ', **tf), sg.In(key="zip_code")],
+        [sg.Text('Phone No: ', **tf), sg.In(key="phone")],
+        [sg.Text('E-mail: ', **tf), sg.In(key="email")],
 
-        [sg.Text("Customer Last Name", size=(20, 1),
-                 background_color="#54C5C9",
-                 text_color='black'
-                 ),
-         sg.InputText("",
-                      size=(20, 1))
-         ],
-        [sg.Text("Customer Address:",
-                 size=(20, 1),
-                 background_color="#54C5C9",
-                 text_color='black'),
-         # I1
-         sg.InputText("", size=(20, 1))],
-        [sg.Text("Customer Phone No.:",
-                 size=(20, 1),
-                 background_color="#54C5C9",
-                 text_color='black'),
-         # I1
-         sg.InputText("", size=(20, 1))],
-        [sg.Text("Customer Email:",
-                 size=(20, 1),
-                 background_color="#54C5C9",
-                 text_color='black'),
-         sg.InputText("", size=(20, 1))],
-        [sg.Button('Save'), sg.Button('Cancel')
+        [sg.Button('Add Customer', **button2), sg.Button('Cancel', **button2)]
     ]
-    ]
-
-
 
     return sg.Window('Add Customer', layout,
                      finalize=True,
-                     background_color="#54C5C9",
                      size=(500, 400),
                      resizable=True,
                      element_justification='c',
@@ -192,6 +129,25 @@ def add_customer_window():
 
 def add_customer():
     print("Adding customer...")
+
+
+def remove_customer_window():
+    layout = [
+        [sg.Text("Remove Customer", **h1)],
+        [sg.Text("Which customer id do you want to remove?", font=("Helvetica", 12))],
+        [sg.In(key='customer_id')],
+
+        [sg.Button('Remove Customer'), sg.Button('Cancel')]
+    ]
+
+    return sg.Window('Remove customer', layout,
+                     finalize=True,
+                     size=(500, 400),
+                     resizable=True,
+                     element_justification='c',
+                     keep_on_top=True,
+                     modal=True
+                     )
 
 
 def remove_customer():
@@ -208,8 +164,8 @@ def main():
     # customer_screen = None
     # main_screen = make_window1()
 
-    main_screen, customer_screen, order_screen, inventory_screen, add_customer_screen = \
-        frontpage_window(), None, None, None, None
+    main_screen, customer_screen, order_screen, inventory_screen, add_customer_screen, remove_customer_screen = \
+        frontpage_window(), None, None, None, None, None
 
     while True:
         window, event, values = sg.read_all_windows()
@@ -232,7 +188,7 @@ def main():
             customer_screen = customer_window()
 
         if window == customer_screen and (event in (sg.Button, 'Remove Customer')):
-            remove_customer()
+            remove_customer_window()
             customer_screen.close()
             customer_screen = customer_window()
 
