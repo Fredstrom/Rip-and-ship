@@ -45,21 +45,37 @@ def frontpage_window():
 
 
 def customer_window():
-    data = [["", "", ""], ["", "", ""]]
-    header_list = []
+    data = [
+        ["Anders", "Testsson", "Testgatan 1", "024-224934", "Test@epost.se"],
+        ['Berit', "Testberg", 'Storgatan 22', '202192392', 'Berit@telia.se'],
+    ]
+    header_list = ["First Name", "Last Name", "Address", "Phone", "e-mail"]
     layout = [
-        [sg.Button('Back'), sg.Text('Customers',
-                 size=(30, 1),
+        [sg.Button('Back'),
+
+         sg.Text('Customers',
+                 justification="c",
+                 size=(15, 1),
                  background_color="#54C5C9",
                  text_color='black',
-                 font=('Arial', 30, 'bold'))],
+                 font=('Arial', 30, 'bold')),
+
+         sg.Text("",
+                 size=10,
+                 background_color="#54C5C9")
+         ],
 
         [sg.Table(values=data,
-                  headings=["First Name", "Last Name", "Address", "Phone", "e-mail"],
+                  headings=header_list,
                   auto_size_columns=False,
+                  background_color="#54C5C9",
                   num_rows=min(25, len(data)))],
 
-        [sg.Button('Add Customer'), sg.Button('Remove Customer'), sg.Button('Update Customer')]]
+        [sg.Button('Add Customer'),
+         sg.Button('Remove Customer'),
+         sg.Button('Update Customer')
+         ]
+    ]
 
     return sg.Window('Customers', layout,
                      finalize=True,
