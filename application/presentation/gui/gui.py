@@ -12,7 +12,7 @@ button2 = {'size': (5, 1),
 def frontpage_window():
     layout = [
         [sg.Text('Rip and Ship',
-                 size=(30,  1),
+                 size=(30, 1),
                  justification='c',
                  background_color="#54C5C9",
                  text_color='black',
@@ -32,7 +32,6 @@ def frontpage_window():
                  text_color='black',
                  font=('Arial', 15, 'bold'))],
 
-
         [sg.Button('Customers', **button),
          sg.Button('Orders', **button),
          sg.Button('Inventory', **button)]]
@@ -48,19 +47,19 @@ def frontpage_window():
 def customer_window():
     data = [["", "", ""], ["", "", ""]]
     header_list = []
-    layout = [[sg.Text('Customers',
-                       size=(30, 1),
-                       justification='c',
-                       background_color="#54C5C9",
-                       text_color='black',
-                       font=('Arial', 30, 'bold'))],
+    layout = [
+        [sg.Button('Back'), sg.Text('Customers',
+                 size=(30, 1),
+                 background_color="#54C5C9",
+                 text_color='black',
+                 font=('Arial', 30, 'bold'))],
 
-              [sg.Button('Back')],
+        [sg.Table(values=data,
+                  headings=["First Name", "Last Name", "Address", "Phone", "e-mail"],
+                  auto_size_columns=False,
+                  num_rows=min(25, len(data)))],
 
-              [sg.Table(values=data,
-                        headings=["First Name", "Last Name", "Address", "Phone", "e-mail"],
-                        auto_size_columns=False,
-                        num_rows=min(25, len(data)))]]
+        [sg.Button('Add Customer'), sg.Button('Remove Customer'), sg.Button('Update Customer')]]
 
     return sg.Window('Customers', layout,
                      finalize=True,
