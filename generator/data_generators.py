@@ -34,7 +34,7 @@ def generate_order_dates(start, end):
 
 
 def generate_cars():
-    for i in range(len(cars)):
+    # for i in range 1 #range(len(cars)):
         car = {
             'vin_no': cars[i]['vin_no'],
             'customer_id': random.randrange(1, len(customers)),
@@ -213,3 +213,10 @@ def generate_suppliers_orders_from():
         suppliers_orders_from_controller.create_suppliers_orders_from(orders_from)
 
 
+def main():
+    
+    generate_cars()
+
+
+if __name__ == '__main__':
+    main()
