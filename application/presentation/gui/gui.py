@@ -46,7 +46,7 @@ def frontpage_window():
 
 
 def customer_window():
-    data = []
+    data = [["", "", ""], ["", "", ""]]
     header_list = []
     layout = [[sg.Text('Customers',
                        size=(30, 1),
@@ -58,10 +58,9 @@ def customer_window():
               [sg.Button('Back')],
 
               [sg.Table(values=data,
-                        headings=header_list,
+                        headings=["First Name", "Last Name", "Address", "Phone", "e-mail"],
                         auto_size_columns=False,
-                        num_rows=min(25, len(data)))]
-              ]
+                        num_rows=min(25, len(data)))]]
 
     return sg.Window('Customers', layout,
                      finalize=True,
