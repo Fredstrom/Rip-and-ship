@@ -1,5 +1,10 @@
 import PySimpleGUI as sg
 
+data = [
+    ["Anders", "Testsson", "Testgatan 1", "024-224934", "Test@epost.se"],
+    ['Berit', "Testberg", 'Storgatan 22', '202192392', 'Berit@telia.se'],
+    ["ny kund", "bla bla", "bla bla"]
+]
 button = {'size': (10, 2),
           'font': ('Roboto Mono', 10, 'bold'),
           'button_color': ("white", "#000000")}
@@ -45,10 +50,6 @@ def frontpage_window():
 
 
 def customer_window():
-    data = [
-        ["Anders", "Testsson", "Testgatan 1", "024-224934", "Test@epost.se"],
-        ['Berit', "Testberg", 'Storgatan 22', '202192392', 'Berit@telia.se'],
-    ]
     header_list = ["First Name", "Last Name", "Address", "Phone", "e-mail"]
     layout = [
         [sg.Button('Back'),
@@ -130,47 +131,134 @@ def inventory_window():
                      element_justification='center')
 
 
+def add_customer_window():
+    layout = [
+        # Header
+        [sg.Text("Add Customer",
+                 size=(30, 1),
+                 justification='c',
+                 background_color="#54C5C9",
+                 font=('Arial', 30, 'bold'),
+                 text_color='black')],
+        # H1
+        [sg.Text("Customer First Name:",
+                 size=(20, 1),
+                 background_color="#54C5C9",
+                 text_color='black'),
+         # I1
+         sg.InputText("", size=(20, 1))],
+
+        [sg.Text("Customer Last Name", size=(20, 1),
+                 background_color="#54C5C9",
+                 text_color='black'
+                 ),
+         sg.InputText("",
+                      size=(20, 1))
+         ],
+        [sg.Text("Customer Address:",
+                 size=(20, 1),
+                 background_color="#54C5C9",
+                 text_color='black'),
+         # I1
+         sg.InputText("", size=(20, 1))],
+        [sg.Text("Customer Phone No.:",
+                 size=(20, 1),
+                 background_color="#54C5C9",
+                 text_color='black'),
+         # I1
+         sg.InputText("", size=(20, 1))],
+        [sg.Text("Customer Email:",
+                 size=(20, 1),
+                 background_color="#54C5C9",
+                 text_color='black'),
+         sg.InputText("", size=(20, 1))],
+        [sg.Button('Save'), sg.Button('Cancel')
+    ]
+    ]
+
+
+
+    return sg.Window('Add Customer', layout,
+                     finalize=True,
+                     background_color="#54C5C9",
+                     size=(500, 400),
+                     resizable=True,
+                     element_justification='c',
+                     keep_on_top=True,
+                     modal=True
+                     )
+
+
+def add_customer():
+    print("Adding customer...")
+
+
+def remove_customer():
+    selection = int(input("Which row do you want to remove?:"))
+    data.pop(selection - 1)
+
+
+def update_customer():
+    print("updating customer")
+
+
 def main():
     # Design pattern 1 - First window does not remain active
-    # window2 = None
-    # window1 = make_window1()
+    # customer_screen = None
+    # main_screen = make_window1()
 
-    window1, window2, window3, window4 = frontpage_window(), None, None, None
+    main_screen, customer_screen, order_screen, inventory_screen, add_customer_screen = \
+        frontpage_window(), None, None, None, None
 
     while True:
         window, event, values = sg.read_all_windows()
 
-        if event == sg.WIN_CLOSED and window == window1:
+        if event == sg.WIN_CLOSED or None and window == main_screen:
             break
 
-        if event == 'Customers' and not window2:
-            window1.hide()
-            window2 = customer_window()
+        if event == 'Customers' and not customer_screen:
+            main_screen.hide()
+            customer_screen = customer_window()
 
-        if window == window2 and (event in (sg.WIN_CLOSED, 'Back')):
-            window2.close()
-            window2 = None
-            window1.un_hide()
+        if window == customer_screen and (event in (None, sg.WIN_CLOSED, 'Back')):
+            customer_screen.close()
+            customer_screen = None
+            main_screen.un_hide()
 
-        if event == 'Orders' and not window3:
-            window1.hide()
-            window3 = order_window()
+        if window == customer_screen and (event in (sg.Button, 'Add Customer')):
+            add_customer_window()
+            customer_screen.close()
+            customer_screen = customer_window()
 
-        if window == window3 and (event in (sg.WIN_CLOSED, 'Back')):
-            window3.close()
-            window3 = None
-            window1.un_hide()
+        if window == customer_screen and (event in (sg.Button, 'Remove Customer')):
+            remove_customer()
+            customer_screen.close()
+            customer_screen = customer_window()
 
-        if window == 'Inventory' and not window4:
-            window1.hide()
-            window4 = inventory_window()
+        if window == customer_screen and (event in (sg.Button, 'Update Customer')):
+            update_customer()
+            customer_screen.close()
+            customer_screen = customer_window()
 
-        if window == window4 and (event in (sg.WIN_CLOSED, 'Back')):
-            window4.close()
-            window4 = None
-            window1.un_hide()
+        if event == 'Orders' and not order_screen:
+            main_screen.hide()
+            order_screen = order_window()
 
-    window1.close()
+        if window == order_screen and (event in (None, sg.WIN_CLOSED, 'Back')):
+            order_screen.close()
+            order_screen = None
+            main_screen.un_hide()
+
+        if window == 'Inventory' and not inventory_screen:
+            main_screen.hide()
+            inventory_screen = inventory_window()
+
+        if window == inventory_screen and (event in (None, sg.WIN_CLOSED, 'Back')):
+            inventory_screen.close()
+            inventory_screen = None
+            main_screen.un_hide()
+
+    main_screen.close()
 
 
 if __name__ == '__main__':
