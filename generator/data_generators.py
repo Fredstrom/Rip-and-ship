@@ -45,6 +45,7 @@ def generate_cars():
         }
         customer_cars_controller.create_customer_car(car)
 
+
 def generate_customers():
     for i in range(len(customers)):
         customer = {
@@ -58,7 +59,6 @@ def generate_customers():
             'email': customers[i]['email']
         }
         customer_controller.create_customer(customer)
-
 
 
 def generate_contact_persons():
