@@ -11,3 +11,15 @@ def remove_employee(_id):
 
 def update_employee(_id, column, update):
     employee_repository.update_employee(_id, column, update)
+
+
+def get_employee_by_id(_id):
+    employee_repository.get_employee_by_id(_id)
+
+
+def order_by_employee(column):
+    employee_repository.order_by_employee(column)
+
+
+def search_for_employee(column, search_for):
+    employee_repository.search_for_employee(column, search_for)

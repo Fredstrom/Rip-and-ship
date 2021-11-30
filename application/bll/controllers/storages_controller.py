@@ -1,13 +1,24 @@
-from application.dll.repository import storages_repository
+from application.dll.repository import storage_repository
 
 
 def create_storages(storage: dict):
-    storages_repository.create_storages(storage)
+    storage_repository.create_storages(storage)
 
 
 def remove_customer(_id: int):
-    storages_repository.remove_storage(_id)
+    storage_repository.remove_storage(_id)
 
 
 def update_customer(_id: int, column: str, update: str):
-    storages_repository.update_storage(_id, column, update)
+    storage_repository.update_storage(_id, column, update)
+
+def get_storage_by_id(_id):
+    storage_repository.get_storage_by_id(_id)
+
+
+def order_by_storage(column):
+    storage_repository.order_by_storage(column)
+
+
+def search_for_storage(column, search_for):
+    storage_repository.search_for_storage(column, search_for)
