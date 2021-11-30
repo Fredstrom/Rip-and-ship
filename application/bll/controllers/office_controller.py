@@ -7,7 +7,6 @@ def create_office(office):
 def remove_office(_id):
     office_repository.remove_office(_id)
 
-
 def update_office(_id, column, update):
     office_repository.update_office(_id, column, update)
 
