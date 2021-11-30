@@ -11,6 +11,6 @@ def remove_product(_id):
     product_repository.remove_product(_id)
 
 
-def update_office(_id, column, update):
+def update_product(_id, column, update):
     product_repository.update_product(_id, column, update)
 
