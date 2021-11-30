@@ -6,3 +6,4 @@ def create_customer(customer):
     customer = Customers(**customer)
     session.add(customer)
     session.commit()
+
