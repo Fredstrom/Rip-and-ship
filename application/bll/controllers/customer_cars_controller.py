@@ -11,3 +11,11 @@ def remove_customer_car(_id: int):
 
 def update_customer_car(vin_no: str, column: str, update: str):
     customer_car_repository.update_customer_car(vin_no, column, update)
+
+
+def order_by_customer_car(column: str):
+    customer_car_repository.order_by_customer_car(column)
+
+
+def search_for_customer_car(column: str, search_for: str):
+    customer_car_repository.search_for_customer_car(column, search_for)
