@@ -7,12 +7,13 @@ def create_product(product):
     session.add(products)
     session.commit()
 
+
 def get_all_products():
     return session.query(Products).all()
 
 
 def remove_product(_id):
-    product = session.query(Products).filter(Products.employee_id == _id).first()
+    product = session.query(Products).filter(Products.product_id == _id).first()
     session.delete(product)
     session.commit()
 
