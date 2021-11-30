@@ -19,8 +19,3 @@ def update_employee(_id, column, update):
     session.commit()
 
 
-def main():
-    remove_employee(2)
-
-if __name__ == '__main__':
-    main()
