@@ -33,6 +33,6 @@ def add_customer_window():
         [sg.Text('E-mail: ', **h2), sg.In(key="email")],
 
         # Bottom row
-        [sg.Button('Add Customer', **button2), sg.Button('Cancel', **button2)]
+        [sg.Text("", **h2), sg.Button('Add Customer', **button2), sg.Button('Cancel', **button2)]
     ]
     return sg.Window('Add Customer', layout, **wdw)
