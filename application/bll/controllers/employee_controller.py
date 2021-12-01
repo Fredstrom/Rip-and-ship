@@ -18,8 +18,8 @@ def get_employee_by_id(_id):
 
 
 def order_by_employee(column):
-    employee_repository.order_by_employee(column)
+    return employee_repository.order_by_employee(column)
 
 
 def search_for_employee(column, search_for):
-    employee_repository.search_for_employee(column, search_for)
+    return employee_repository.search_for_employee(column, search_for)

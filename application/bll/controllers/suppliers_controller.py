@@ -14,8 +14,8 @@ def update_customer(_id: int, column: str, update: str):
 
 
 def order_by_supplier(column: str):
-    suppliers_repository.order_by_supplier(column)
+    return suppliers_repository.order_by_supplier(column)
 
 
 def search_for_supplier(column: str, search_for: str):
-    suppliers_repository.search_for_supplier(column, search_for)
+    return suppliers_repository.search_for_supplier(column, search_for)
