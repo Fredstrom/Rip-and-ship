@@ -1,5 +1,11 @@
 import PySimpleGUI as sg
-import variables
+from variables import *
+
 
 def inventory_window():
-    pass
+    layout = [
+        [sg.Text('Inventory', **h1)],
+
+        [sg.Button('Back', **button2)]
+    ]
+    return sg.Window('Inventory', layout, **wdw)
