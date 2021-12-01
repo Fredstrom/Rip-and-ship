@@ -12,6 +12,7 @@ class CustomerCarsModels(Base):
     year = Column(Integer, nullable=False)
     model = Column(String(45), nullable=False)
     brand = Column(String(45), nullable=False)
+    customer = relationship = relationship('Customers', back_populates='cars')
 
 
 class ContactPersons(Base):
@@ -22,6 +23,8 @@ class ContactPersons(Base):
     last_name = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
     phone = Column(String(45), nullable=False)
+    manufacturer = relationship('Manufacturer', back_populates='contact_persons')
+    supplier = relationship('Suppliers', back_populates='contact_persons')
 
 
 class Customers(Base):
@@ -36,6 +39,7 @@ class Customers(Base):
     zip_code = Column(String(45), nullable=False)
     phone = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
+    cars = relationship('CustomerCarsModels', back_populates='customer')
 
 
 class Employees(Base):
@@ -47,7 +51,8 @@ class Employees(Base):
     phone = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
     store_id = Column(Integer, ForeignKey('offices.store_id'))
-    offices = relationship('Offices')
+    offices = relationship('Offices', back_populates='employee')
+    orders = relationship('Orders', back_populates='employee')
 
 
 class Manufacturers(Base):
@@ -59,7 +64,7 @@ class Manufacturers(Base):
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
-    contact_persons = relationship('ContactPersons')
+    contact_persons = relationship('ContactPersons', back_populates='manufacturer')
 
 
 class Offices(Base):
@@ -70,6 +75,7 @@ class Offices(Base):
     address = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     phone = Column(String(45), nullable=False)
+    employee = relationship('Employees', back_populates='offices')
 
 
 class OrderDetails(Base):
@@ -79,8 +85,8 @@ class OrderDetails(Base):
     product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
     quantity = Column(Integer, nullable=False)
     price_each = Column(Integer, nullable=False)
-    orders = relationship('Orders')
-    products = relationship('Products')
+    orders = relationship('Orders', back_populates='orderdetails')
+    products = relationship('Products', back_populates='orderdetails')
 
 
 class Orders(Base):
@@ -91,8 +97,8 @@ class Orders(Base):
     delivery_date = Column(DateTime, nullable=False)
     customer_id = Column(Integer, ForeignKey('customers.customer_id'))
     employee_id = Column(Integer, ForeignKey('employees.employee_id'))
-    customers = relationship('Customers')
-    employee = relationship('Employees')
+    customers = relationship('Customers', back_populates='orders')
+    employee = relationship('Employees', back_populates='orders')
 
 
 class Products(Base):
@@ -157,7 +163,7 @@ class Suppliers(Base):
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
-    contact_persons = relationship('ContactPersons')
+    contact_persons = relationship('ContactPersons', back_populates='supplier')
 
 
 class SuppliersOrdersFrom(Base):
