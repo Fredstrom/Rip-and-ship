@@ -3,9 +3,9 @@ import PySimpleGUI as sg
 
 sg.theme('Dark Grey 11')
 
-data = [['Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
-        ['Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
-        ['Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
+data = [[1, 'Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
+        [2, 'Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
+        [3, 'Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
 
 # Text1
 h1 = {'size': (30, 1),
@@ -31,7 +31,7 @@ wdw = {'finalize': 'True',
        'element_justification': 'c'}
 
 # Table preset
-table = { 'auto_size_columns': 'True',
+table = {'auto_size_columns': 'True',
           'def_col_width': 12,
           'num_rows': min(25, len(data)),
           'font': ("Sora", 14),

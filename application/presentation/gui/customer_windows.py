@@ -15,13 +15,13 @@ def customer_window():
             cid = int(tables.identify_column(event.x)[1:])-1
             window.write_event_value("-TABLE-DOUBLE-CLICK-", cid)
 
-    header_list = ['First Name', 'Last Name', 'Address', 'City', 'zip-code', 'phone', 'E-mail']
+    header_list = ['id', 'First Name', 'Last Name', 'Address', 'City', 'zip-code', 'phone', 'E-mail']
     layout = [
         # Row 1
         [sg.Text('Customers', **h1)],
 
         # Row 2
-        [sg.Table(values=data, headings=header_list, **table, key='-TABLE-',enable_events=True)],
+        [sg.Table(values=data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
 
         # Row 3
         [sg.Button('Add Customer', **button2),

@@ -50,7 +50,8 @@ def event_handler():
                 add_customer_screen = add_customer_window()
 
             if event == '-TABLE-DOUBLE-CLICK-':
-
+                column = values[event]
+                print(f'Click on column {column}')
                 customer_screen.close()
                 customer_screen = customer_window()
 
