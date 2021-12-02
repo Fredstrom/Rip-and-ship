@@ -35,3 +35,20 @@ def place_order_window():
         [sg.Text("", **h2), sg.Button('Place order', **button2, key='-PLACE-', bind_return_key=True), sg.Button('Cancel', **button2)]
     ]
     return sg.Window('Place order', layout, size=(500, 600), finalize=True, keep_on_top=True)
+
+
+def edit_order_window(idx):
+
+    layout = [
+        [sg.Text('Order ID ', **h2), sg.In(default_text=idx[0], key='order_id')],
+        [sg.Text('Customer ID: ', **h2), sg.In(default_text=idx[1], key='customer_id')],
+        [sg.Text('Price: ', **h2), sg.In(default_text=idx[2], key='price')],
+        [sg.Text('Employee: ', **h2), sg.In(default_text=idx[3], key='employee_id')],
+        [sg.Text('Order date: ', **h2), sg.In(default_text=idx[4], key='order_date')],
+
+        # Bottom row
+        [sg.Text("", **h2), sg.Button('Submit', **button2, key='-EDIT-', bind_return_key=True),
+         sg.Button('Cancel', **button2)]
+    ]
+    return sg.Window('Edit order', layout, size=(500, 600), finalize=True, keep_on_top=True)
+

@@ -18,3 +18,6 @@ def edit_customer(row, output):
 def place_order(output):
     order_data.append(output)
 
+
+def edit_order(row, output):
+    order_data[row] = output
