@@ -13,6 +13,10 @@ def update_customer_car(vin_no: str, column: str, update: str):
     customer_car_repository.update_customer_car(vin_no, column, update)
 
 
+def get_customer_car_by_id(_id):
+    return customer_car_repository.get_customer_car_by_id(_id)
+
+
 def order_by_customer_car(column: str):
     return customer_car_repository.order_by_customer_car(column)
 

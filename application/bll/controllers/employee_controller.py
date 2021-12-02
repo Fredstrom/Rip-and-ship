@@ -14,7 +14,7 @@ def update_employee(_id, column, update):
 
 
 def get_employee_by_id(_id):
-    employee_repository.get_employee_by_id(_id)
+    return employee_repository.get_employee_by_id(_id)
 
 
 def order_by_employee(column):

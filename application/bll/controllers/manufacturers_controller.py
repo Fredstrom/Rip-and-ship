@@ -14,7 +14,7 @@ def update_manufacturer(_id, column, update):
 
 
 def get_manufacturer_by_id(_id):
-    manufacturer_repository.get_manufacturer_by_id(_id)
+    return manufacturer_repository.get_manufacturer_by_id(_id)
 
 
 def order_by_manufacturer(column):

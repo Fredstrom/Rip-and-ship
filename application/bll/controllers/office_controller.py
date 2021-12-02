@@ -14,7 +14,7 @@ def update_office(_id, column, update):
 
 
 def get_office_by_id(_id):
-    office_repository.get_office_by_id(_id)
+    return office_repository.get_office_by_id(_id)
 
 
 def order_by_office(column):

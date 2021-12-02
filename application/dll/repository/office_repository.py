@@ -22,7 +22,8 @@ def update_office(_id, column, update):
 
 
 def get_office_by_id(_id):
-    return session.query(Offices).filter(Offices.store_id == _id).first()
+    offices = session.query(Offices).filter(Offices.store_id == _id).first()
+    return {i.name: getattr(offices, i.name) for i in offices.table.columns}
 
 
 def order_by_office(column):

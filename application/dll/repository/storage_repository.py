@@ -22,7 +22,8 @@ def update_storage(_id: int, column: str, update: str):
 
 
 def get_storage_by_id(_id):
-    return session.query(Storages).filter(Storages.shelf_id == _id).first()
+    storage = session.query(Storages).filter(Storages.storage_id == _id).first()
+    return {i.name: getattr(storage, i.name) for i in storage.table.columns}
 
 
 def order_by_storage(column):

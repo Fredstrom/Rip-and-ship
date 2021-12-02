@@ -21,6 +21,11 @@ def update_customer(_id: int, column: str, update: str):
     session.commit()
 
 
+def get_customer_by_id(_id):
+    customer = session.query(Customers).filter(Customers.customer_id == _id).first()
+    return {i.name: getattr(customer, i.name) for i in customer.table.columns}
+
+
 def order_by_customer(column: str):
     return [{
                 'customer_id': customer.customer_id,

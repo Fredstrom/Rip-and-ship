@@ -22,7 +22,9 @@ def update_employee(_id, column, update):
 
 
 def get_employee_by_id(_id):
-    return session.query(Employees).filter(Employees.employee_id == _id).first()
+
+    employee = session.query(Employees).filter(Employees.employee_id == _id).first()
+    return {i.name: getattr(employee, i.name) for i in employee.table.columns}
 
 
 def order_by_employee(column):

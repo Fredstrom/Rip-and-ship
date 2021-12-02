@@ -13,7 +13,7 @@ def update_customer(_id: int, column: str, update: str):
     storage_repository.update_storage(_id, column, update)
 
 def get_storage_by_id(_id):
-    storage_repository.get_storage_by_id(_id)
+    return storage_repository.get_storage_by_id(_id)
 
 
 def order_by_storage(column):
