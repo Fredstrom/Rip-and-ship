@@ -1,14 +1,13 @@
 import PySimpleGUI as sg
 
-
 sg.theme('Dark Grey 11')
 
-data = [[1, 'Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
-        [2, 'Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
-        [3, 'Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
+data = [['Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
+        ['Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
+        ['Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
 
 # Text1
-h1 = {'size': (30, 1),
+h1 = {'size': (15, 1),
       'justification': 'c',
       'font': ('BioRhyme', 28, 'bold')}
 
@@ -24,19 +23,21 @@ button1 = {'size': (12, 1),
 
 button2 = {'font': ('Sora SemiBold', 14)}
 
+filler = {'size': (10, 1), 'font': ('Sora SemiBold', 12, 'bold')}
+
 # Window template
 wdw = {'finalize': 'True',
-       'size': (900, 600),
+       'size': (1400, 700),
        'resizable': 'True',
        'element_justification': 'c'}
 
 # Table preset
 table = {'auto_size_columns': 'True',
-          'def_col_width': 12,
-          'num_rows': min(25, len(data)),
-          'font': ("Sora", 14),
-          'justification': 'c',
-          'expand_y': 'True',
-          'expand_x': 'True'}
-
+         'def_col_width': 12,
+         'num_rows': min(25, len(data)),
+         'font': ("Sora", 14),
+         'justification': 'c',
+         'expand_y': 'True',
+         'expand_x': 'True',
+         'alternating_row_color': '#222831'}
 
