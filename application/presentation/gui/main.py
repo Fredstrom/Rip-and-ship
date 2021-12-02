@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 from variables import *
-
+from temp_functions import *
 from main_menu import *
 from customer_windows import *
 from order_windows import *
@@ -49,6 +49,11 @@ def event_handler():
                 customer_screen.close()
                 add_customer_screen = add_customer_window()
 
+            if event == '-TABLE-DOUBLE-CLICK-':
+
+                customer_screen.close()
+                customer_screen = customer_window()
+
             elif event in (sg.Button, 'Remove Customer'):
                 customer_screen.close()
                 remove_customer_screen = remove_customer_window()
@@ -73,9 +78,7 @@ def event_handler():
         if window == remove_customer_screen:
             if event in (sg.Button, 'Remove Customer'):
                 selection = int(values['customer_id'])
-                if selection < 0:
-                    selection = 0
-                data.pop(selection - 1)
+                remove_customer(selection)
                 customer_screen = customer_window()
                 remove_customer_screen.close()
                 remove_customer_screen = None

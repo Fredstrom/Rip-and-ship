@@ -3,13 +3,25 @@ from variables import *
 
 
 def customer_window():
+
+    def double_click(event):
+        """
+        Additional event for double-click on header
+        event returns: -TABLE-DOUBLE-CLICK-
+        """
+        region = tables.identify("region", event.x, event.y)
+
+        if region == 'heading':
+            cid = int(tables.identify_column(event.x)[1:])-1
+            window.write_event_value("-TABLE-DOUBLE-CLICK-", cid)
+
     header_list = ['First Name', 'Last Name', 'Address', 'City', 'zip-code', 'phone', 'E-mail']
     layout = [
         # Row 1
         [sg.Text('Customers', **h1)],
 
         # Row 2
-        [sg.Table(values=data, headings=header_list, **table, key='-TABLE-')],
+        [sg.Table(values=data, headings=header_list, **table, key='-TABLE-',enable_events=True)],
 
         # Row 3
         [sg.Button('Add Customer', **button2),
@@ -18,7 +30,12 @@ def customer_window():
          ]
 
     ]
-    return sg.Window('Customers', layout, **wdw)
+
+    window = sg.Window('Table', layout, **wdw)
+    tables = window['-TABLE-'].Widget
+    tables.bind('<Double-1>', double_click, add='+')
+
+    return window
 
 
 def add_customer_window():
