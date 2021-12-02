@@ -22,7 +22,8 @@ def update_manufacturer(_id, column, update):
 
 
 def get_manufacturer_by_id(_id):
-    return session.query(Manufacturers).filter(Manufacturers.manufacturer_id == _id).first()
+    manufacturer = session.query(Manufacturers).filter(Manufacturers.manufacturer_id == _id).first()
+    return {i.name: getattr(manufacturer, i.name) for i in manufacturer.table.columns}
 
 
 def order_by_manufacturer(column):

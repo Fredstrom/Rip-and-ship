@@ -12,6 +12,9 @@ def remove_contact_person(_id: int):
 def update_contact_person(_id: int, column: str, update: str):
     contact_persons_repository.update_contact_person(_id, column, update)
 
+def get_contact_person_by_id(_id):
+    return contact_persons_repository.get_contact_person_by_id(_id)
+
 
 def order_by_contact_person(column: str):
     contact_persons_repository.order_by_contact_person(column)

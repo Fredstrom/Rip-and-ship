@@ -13,6 +13,10 @@ def update_customer(_id: int, column: str, update: str):
     customer_repository.update_customer(_id, column, update)
 
 
+def get_customer_by_id(_id):
+    return customer_repository.get_customer_by_id(_id)
+
+
 def order_by_customer(column: str):
     customer_repository.order_by_customer(column)
 

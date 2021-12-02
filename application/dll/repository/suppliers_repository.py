@@ -21,6 +21,11 @@ def update_supplier(_id: int, column: str, update: str):
     session.commit()
 
 
+def get_supplier_by_id(_id):
+    supplier = session.query(Suppliers).filter(Suppliers.supplier_id == _id).first()
+    return {i.name: getattr(supplier, i.name) for i in supplier.table.columns}
+
+
 def order_by_supplier(column: str):
     return [{
                 'supplier_id': supplier.supplier_id,

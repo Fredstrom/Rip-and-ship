@@ -17,10 +17,6 @@ def update_product(_id, column, update):
     product_repository.update_product(_id, column, update)
 
 
-def get_product_by_id(_id):
-    product_repository.get_product_by_id(_id)
-
-
 def order_by_product(column):
     product_repository.order_by_product(column)
 

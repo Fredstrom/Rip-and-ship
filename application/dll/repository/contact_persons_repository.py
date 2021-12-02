@@ -20,6 +20,11 @@ def update_contact_person(_id: int, column: str, update: str):
     session.commit()
 
 
+def get_contact_person_by_id(_id):
+    contact_person = session.query(ContactPersons).filter(ContactPersons.contact_id == _id).first()
+    return {i.name: getattr(contact_person, i.name) for i in contact_person.table.columns}
+
+
 def order_by_contact_person(column: str):
     return [{
                 'contact_id': contact_person.contact_id,
