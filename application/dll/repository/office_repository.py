@@ -45,3 +45,11 @@ def search_for_office(column, search_for):
                 'zip_code': office.zip_code,
                 'phone': office.phone
             } for office in offices if re.search(search_for, getattr(office, column))]
+
+
+def get_all_offices():
+    offices = session.query(Offices).all()
+    dict_list = []
+    for office in offices:
+        dict_list.append({i.name: getattr(office, i.name) for i in office.__table__.columns})
+    return dict_list

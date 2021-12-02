@@ -50,3 +50,11 @@ def search_for_employee(column, search_for):
         'phone': employee.phone,
         'contact_id': employee.contact_id
     } for employee in employees if re.search(search_for, getattr(employee, column))]
+
+
+def get_all_employees():
+    employees = session.query(Employees).all()
+    dict_list = []
+    for employee in employees:
+        dict_list.append({i.name: getattr(employee, i.name) for i in employee.__table__.columns})
+    return dict_list

@@ -18,8 +18,8 @@ def get_manufacturer_by_id(_id):
 
 
 def order_by_manufacturer(column):
-    manufacturer_repository.order_by_manufacturer(column)
+    return manufacturer_repository.order_by_manufacturer(column)
 
 
 def search_for_manufacturer(column, search_for):
-    manufacturer_repository.search_for_manufacturer(column, search_for)
+    return manufacturer_repository.search_for_manufacturer(column, search_for)

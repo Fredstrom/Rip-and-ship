@@ -45,3 +45,9 @@ def search_for_storage(column, search_for):
             } for storage in storages if re.search(search_for, getattr(storage, column))]
 
 
+def get_all_storages():
+    storages = session.query(Storages).all()
+    dict_list = []
+    for storage in storages:
+        dict_list.append({i.name: getattr(storage, i.name) for i in storage.__table__.columns})
+    return dict_list

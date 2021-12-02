@@ -45,3 +45,11 @@ def search_for_customer_car(column: str, search_for: str):
                 'model': car.model,
                 'brand': car.brand
             } for car in cars if re.search(search_for, getattr(car, column))]
+
+
+def get_all_customer_cars():
+    cars = session.query(CustomerCarsModels).all()
+    dict_list = []
+    for car in cars:
+        dict_list.append({i.name: getattr(car, i.name) for i in car.__table__.columns})
+    return dict_list

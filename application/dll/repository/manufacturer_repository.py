@@ -1,5 +1,4 @@
 import re
-
 from application.dll.db import session
 from application.dll.models import Manufacturers
 
@@ -49,3 +48,11 @@ def search_for_manufacturer(column, search_for):
         'phone': manufacturer.phone,
         'contact_id': manufacturer.contact_id
     } for manufacturer in manufacturers if re.search(search_for, getattr(manufacturer, column))]
+
+
+def get_all_manufacturers():
+    manufacturers = session.query(Manufacturers).all()
+    dict_list = []
+    for manufacturer in manufacturers:
+        dict_list.append({i.name: getattr(manufacturer, i.name) for i in manufacturer.__table__.columns})
+    return dict_list

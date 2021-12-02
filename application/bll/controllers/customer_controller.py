@@ -18,8 +18,12 @@ def get_customer_by_id(_id):
 
 
 def order_by_customer(column: str):
-    customer_repository.order_by_customer(column)
+    return customer_repository.order_by_customer(column)
 
 
 def search_for_customer(column: str, search_for: str):
-    customer_repository.search_for_customer(column, search_for)
+    return customer_repository.search_for_customer(column, search_for)
+
+
+def get_all_customer():
+    return customer_repository.get_all_customers()
