@@ -23,3 +23,7 @@ def order_by_customer_car(column: str):
 
 def search_for_customer_car(column: str, search_for: str):
     return customer_car_repository.search_for_customer_car(column, search_for)
+
+
+def get_all_customers_cars():
+    return customer_car_repository.get_all_customer_cars()

@@ -44,3 +44,11 @@ def search_for_order(column, search_for):
                 'customer_id': order.customer_id,
                 'employee_id': order.employee_id
             } for order in orders if re.search(search_for, getattr(order, column))]
+
+
+def get_all_orders():
+    orders = session.query(Orders).all()
+    dict_list = []
+    for order in orders:
+        dict_list.append({i.name: getattr(order, i.name) for i in order.__table__.columns})
+    return dict_list

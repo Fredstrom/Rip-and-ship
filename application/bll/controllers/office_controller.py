@@ -23,3 +23,7 @@ def order_by_office(column):
 
 def search_for_office(column, search_for):
     return office_repository.search_for_office(column, search_for)
+
+
+def get_all_offices():
+    office_repository.get_all_offices()

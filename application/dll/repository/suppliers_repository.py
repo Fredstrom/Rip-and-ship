@@ -47,3 +47,11 @@ def search_for_supplier(column: str, search_for: str):
                 'zip_code': supplier.zip_code,
                 'contact_id': supplier.contact_id
             } for supplier in suppliers if re.search(search_for, getattr(supplier, column))]
+
+
+def get_all_suppliers():
+    suppliers = session.query(Suppliers).all()
+    dict_list = []
+    for supplier in suppliers:
+        dict_list.append({i.name: getattr(supplier, i.name) for i in supplier.__table__.columns})
+    return dict_list

@@ -22,3 +22,7 @@ def order_by_contact_person(column: str):
 
 def search_for_contact_person(column: str, search_for: str):
     return contact_persons_repository.search_for_contact_person(column, search_for)
+
+
+def get_all_contact_persons():
+    return contact_persons_repository.get_all_contact_persons()

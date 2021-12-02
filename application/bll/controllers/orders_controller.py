@@ -22,4 +22,8 @@ def order_by_order(column):
 
 
 def search_for_order(column, search_for):
-    orders_repository.search_for_order(column, search_for)
+    return orders_repository.search_for_order(column, search_for)
+
+
+def get_all_orders():
+    return orders_repository.get_all_orders()

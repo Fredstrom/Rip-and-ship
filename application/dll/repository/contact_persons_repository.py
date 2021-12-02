@@ -44,3 +44,11 @@ def search_for_contact_person(column: str, search_for: str):
                 'email': contact_person.email,
                 'phone': contact_person.phone
             } for customer in contact_person if re.search(search_for, getattr(customer, column))]
+
+
+def get_all_contact_persons():
+    persons = session.query(ContactPersons).all()
+    dict_list = []
+    for person in persons:
+        dict_list.append({i.name: getattr(person, i.name) for i in person.__table__.columns})
+    return dict_list

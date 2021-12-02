@@ -109,12 +109,6 @@ class Products(Base):
     description = Column(String(45))
     price_in = Column(Integer, nullable=False)
 
-    # def __repr__(self):
-    #     return f"{self.product_id},{self.price_in}"
-    #
-    # def __dict__(self):
-    #     return {'product_id': self.product_id, 'product_name': self.product_name, 'description': self.description, 'price_in': self.price_in}
-
 
 class ProductsFitModels(Base):
     __tablename__ = 'products_fits_models'

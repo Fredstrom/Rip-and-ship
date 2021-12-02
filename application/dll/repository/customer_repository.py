@@ -53,3 +53,11 @@ def search_for_customer(column: str, search_for: str):
                 'phone': customer.phone,
                 'email': customer.email
             } for customer in customers if re.search(search_for, getattr(customer, column))]
+
+
+def get_all_customers():
+    customers = session.query(Customers).all()
+    dict_list = []
+    for customer in customers:
+        dict_list.append({i.name: getattr(customer, i.name) for i in customer.__table__.columns})
+    return dict_list

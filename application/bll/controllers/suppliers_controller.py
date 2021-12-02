@@ -23,3 +23,7 @@ def order_by_supplier(column: str):
 
 def search_for_supplier(column: str, search_for: str):
     return suppliers_repository.search_for_supplier(column, search_for)
+
+
+def get_all_suppliers():
+    return suppliers_repository.get_all_suppliers()

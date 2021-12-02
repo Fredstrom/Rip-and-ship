@@ -22,3 +22,7 @@ def order_by_storage(column):
 
 def search_for_storage(column, search_for):
     return storage_repository.search_for_storage(column, search_for)
+
+
+def get_all_storages():
+    storage_repository.get_all_storages()

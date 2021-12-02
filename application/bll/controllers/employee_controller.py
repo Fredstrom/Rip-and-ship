@@ -23,3 +23,7 @@ def order_by_employee(column):
 
 def search_for_employee(column, search_for):
     return employee_repository.search_for_employee(column, search_for)
+
+
+def get_all_employees():
+    return employee_repository.get_all_employees()
