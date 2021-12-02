@@ -15,8 +15,8 @@ Variables = edit settings for the windows and buttons. (Fonts etc.)
 def event_handler():
     # Windows:
     main_screen, customer_screen, orders_screen, inventory_screen, \
-        add_customer_screen, edit_customer_screen = \
-        main_menu(), None, None, None, None, None
+        add_customer_screen, edit_customer_screen, place_order_screen = \
+        main_menu(), None, None, None, None, None, None
 
     selected_row = None
 
@@ -91,6 +91,36 @@ def event_handler():
             if event in (sg.Button, "Back"):
                 main_screen.un_hide()
                 inventory_screen.close()
+
+        # ORDER WINDOW
+        if window == orders_screen:
+            if event in '-TABLE-':
+                selected_row = values['-TABLE-'][0]
+
+            elif event in (sg.Button, 'Cancel order') and selected_row is not None:
+                order_data.pop(selected_row)
+                orders_screen = orders_window()
+
+            elif event in (sg.Button, 'Edit order') and selected_row is not None:
+                pass
+
+        if window == orders_screen:
+            if event in (sg.Button, 'Place order'):
+                place_order_screen = place_order_window()
+
+        # PLACE ORDER WINDOW
+        if window == place_order_screen:
+            if event in (sg.Button, '-PLACE-'):
+                output = [str(values[key]) for key in values]
+                place_order(output)
+                place_order_screen.close()
+                orders_screen = orders_window()
+
+            # Cancel
+            elif event in (sg.Button, 'Cancel'):
+                place_order_screen.close()
+
+
 
 
 if __name__ == '__main__':

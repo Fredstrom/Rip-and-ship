@@ -2,12 +2,16 @@ import PySimpleGUI as sg
 
 sg.theme('Dark Grey 11')
 
+order_data = [['Test', 'Test', 'test', 'test', 'test'],
+              ['Test', 'Test', 'test', 'test', 'test'],
+              ['Test', 'Test', 'test', 'test', 'test']]
+
 data = [['Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
         ['Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
         ['Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
 
 # Text1
-h1 = {'size': (15, 1),
+h1 = {'size': (14, 1),
       'justification': 'c',
       'font': ('BioRhyme', 28, 'bold')}
 

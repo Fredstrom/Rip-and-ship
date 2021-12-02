@@ -11,10 +11,10 @@ def add_customer(output):
     data.append(output)
 
 
-def add_customer(output):
-    data.append(output)
-
-
 def edit_customer(row, output):
     data[row] = output
+
+
+def place_order(output):
+    order_data.append(output)
 
