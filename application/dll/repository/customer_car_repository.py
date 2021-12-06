@@ -1,30 +1,32 @@
-from application.dll.db import session
-from application.dll.models import CustomerCarsModels
 import re
 
+from application.dll.db import session
+from application.dll.models.car_and_product import CarModel
+
+
 def create_customer_car(customer_car: dict):
-    customer_car = CustomerCarsModels(**customer_car)
+    customer_car = CarModel(**customer_car)
     session.add(customer_car)
     session.commit()
 
 
 def remove_customer_car(vin_no: str):
-    customer_car = session.query(CustomerCarsModels).filter(CustomerCarsModels.vin_no == vin_no).first()
+    customer_car = session.query(CarModel).filter(CarModel.vin_no == vin_no).first()
     session.delete(customer_car)
     session.commit()
 
 
 def update_customer_car(vin_no: str, column: str, update: str):
-    session.query(CustomerCarsModels).filter(CustomerCarsModels.vin_no == vin_no).update({column: update})
+    session.query(CarModel).filter(CarModel.vin_no == vin_no).update({column: update})
     session.commit()
 
 
-def get_customer_car_by_id(vin_no):
-    customer_car = session.query(CustomerCarsModels).filter(CustomerCarsModels.vin_no == vin_no).first()
+def get_customer_car_by_id(vin_no: str) -> dict:
+    customer_car = session.query(CarModel).filter(CarModel.vin_no == vin_no).first()
     return {i.name: getattr(customer_car, i.name) for i in customer_car.table.columns}
 
 
-def order_by_customer_car(column: str):
+def order_by_customer_car(column: str) -> list:
     return [{
                 'vin_no': car.vin_no,
                 'customer_id': car.customer_id,
@@ -32,11 +34,11 @@ def order_by_customer_car(column: str):
                 'year': car.year,
                 'model': car.model,
                 'brand': car.brand
-            } for car in session.query(CustomerCarsModels).order_by(column)]
+            } for car in session.query(CarModel).order_by(column)]
 
 
-def search_for_customer_car(column: str, search_for: str):
-    cars = session.query(CustomerCarsModels).all()
+def search_for_customer_car(column: str, search_for: str) -> list:
+    cars = session.query(CarModel).all()
     return [{
                 'vin_no': car.vin_no,
                 'customer_id': car.customer_id,
@@ -47,9 +49,6 @@ def search_for_customer_car(column: str, search_for: str):
             } for car in cars if re.search(search_for, getattr(car, column))]
 
 
-def get_all_customer_cars():
-    cars = session.query(CustomerCarsModels).all()
-    dict_list = []
-    for car in cars:
-        dict_list.append({i.name: getattr(car, i.name) for i in car.__table__.columns})
-    return dict_list
+def get_all_customer_cars() -> list:
+    cars = session.query(CarModel).all()
+    return [{i.name: getattr(car, i.name) for i in car.__table__.columns} for car in cars]
