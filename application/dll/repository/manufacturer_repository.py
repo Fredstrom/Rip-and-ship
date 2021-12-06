@@ -1,31 +1,32 @@
 import re
+
 from application.dll.db import session
-from application.dll.models import Manufacturers
+from application.dll.models.company import Manufacturer
 
 
-def create_manufacturer(manufacturer):
-    manufacturer = Manufacturers(**manufacturer)
+def create_manufacturer(manufacturer: dict):
+    manufacturer = Manufacturer(**manufacturer)
     session.add(manufacturer)
     session.commit()
 
 
-def remove_manufacturer(_id):
-    manufacturer = session.query(Manufacturers).filter(Manufacturers.manufacturer_id == _id).first()
+def remove_manufacturer(_id: int):
+    manufacturer = session.query(Manufacturer).filter(Manufacturer.manufacturer_id == _id).first()
     session.delete(manufacturer)
     session.commit()
 
 
-def update_manufacturer(_id, column, update):
-    session.query(Manufacturers).filter(Manufacturers.manufacturer_id == _id).update({column: update})
+def update_manufacturer(_id: int, column: str, update: str):
+    session.query(Manufacturer).filter(Manufacturer.manufacturer_id == _id).update({column: update})
     session.commit()
 
 
-def get_manufacturer_by_id(_id):
-    manufacturer = session.query(Manufacturers).filter(Manufacturers.manufacturer_id == _id).first()
+def get_manufacturer_by_id(_id: int):
+    manufacturer = session.query(Manufacturer).filter(Manufacturer.manufacturer_id == _id).first()
     return {i.name: getattr(manufacturer, i.name) for i in manufacturer.table.columns}
 
 
-def order_by_manufacturer(column):
+def order_by_manufacturer(column: str):
     return [{
         'manufacturer_id': manufacturer.manufacurer_id,
         'company_name': manufacturer.company_name,
@@ -34,11 +35,11 @@ def order_by_manufacturer(column):
         'zip_code': manufacturer.zip_code,
         'phone': manufacturer.phone,
         'contact_id': manufacturer.contact_id
-    } for manufacturer in session.query(Manufacturers).order_by(column)]
+    } for manufacturer in session.query(Manufacturer).order_by(column)]
 
 
-def search_for_manufacturer(column, search_for):
-    manufacturers = session.query(Manufacturers).all()
+def search_for_manufacturer(column: str, search_for: str):
+    manufacturers = session.query(Manufacturer).all()
     return [{
         'manufacturer_id': manufacturer.manufacurer_id,
         'company_name': manufacturer.company_name,
@@ -51,8 +52,5 @@ def search_for_manufacturer(column, search_for):
 
 
 def get_all_manufacturers():
-    manufacturers = session.query(Manufacturers).all()
-    dict_list = []
-    for manufacturer in manufacturers:
-        dict_list.append({i.name: getattr(manufacturer, i.name) for i in manufacturer.__table__.columns})
-    return dict_list
+    manufacturers = session.query(Manufacturer).all()
+    return [{i.name: getattr(manufacturer, i.name) for i in manufacturer.__table__.columns} for manufacturer in manufacturers]

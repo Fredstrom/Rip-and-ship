@@ -13,17 +13,17 @@ def update_supplier(_id: int, column: str, update: str):
     suppliers_repository.update_supplier(_id, column, update)
 
 
-def get_supplier_by_id(_id):
+def get_supplier_by_id(_id: int) -> dict:
     return suppliers_repository.get_supplier_by_id(_id)
 
 
-def order_by_supplier(column: str):
+def order_by_supplier(column: str) -> list:
     return suppliers_repository.order_by_supplier(column)
 
 
-def search_for_supplier(column: str, search_for: str):
+def search_for_supplier(column: str, search_for: str) -> list:
     return suppliers_repository.search_for_supplier(column, search_for)
 
 
-def get_all_suppliers():
+def get_all_suppliers() -> list:
     return suppliers_repository.get_all_suppliers()
