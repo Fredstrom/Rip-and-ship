@@ -33,4 +33,3 @@ class Document(dict, ABC):
     @classmethod
     def find(cls, **kwargs):
         return Result(cls(**item) for item in cls.collection.find(kwargs))
-
