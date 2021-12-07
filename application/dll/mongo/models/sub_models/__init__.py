@@ -1,4 +1,5 @@
-from application.dll.mongo.models import Document, db
+from application.dll.mongo.db import db
+from application.dll.mongo.models import Document
 
 
 class CarModel(Document):
