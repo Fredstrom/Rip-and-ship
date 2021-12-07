@@ -1,4 +1,4 @@
-from application.dll.repository import customer_repository
+from application.dll.mysql.repository import customer_repository
 
 
 def create_customer(customer: dict):

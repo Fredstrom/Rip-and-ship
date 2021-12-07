@@ -1,4 +1,4 @@
-from application.dll.repository import employee_repository
+from application.dll.mysql.repository import employee_repository
 
 
 def create_employee(employee: dict):
