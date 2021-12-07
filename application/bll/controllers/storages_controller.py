@@ -1,4 +1,4 @@
-from application.dll.repository import storage_repository
+from application.dll.mysql.repository import storage_repository
 
 
 def create_storages(storage: dict):

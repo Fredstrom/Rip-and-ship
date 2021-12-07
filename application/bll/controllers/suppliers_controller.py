@@ -1,4 +1,4 @@
-from application.dll.repository import suppliers_repository
+from application.dll.mysql.repository import suppliers_repository
 
 
 def create_suppliers(supplier: dict):

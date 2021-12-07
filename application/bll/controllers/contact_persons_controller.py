@@ -1,4 +1,4 @@
-from application.dll.repository import contact_persons_repository
+from application.dll.mysql.repository import contact_persons_repository
 
 
 def create_contact_person(contact_person: dict):
