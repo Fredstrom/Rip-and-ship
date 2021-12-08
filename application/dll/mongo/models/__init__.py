@@ -37,4 +37,12 @@ class Document(dict, ABC):
     def find(cls, **kwargs):
         return Result(cls(**item) for item in cls.collection.find(kwargs))
 
+    @classmethod
+    def delete(cls, **kwargs):
+        cls.collection.delete_many(kwargs)
 
+    @classmethod
+    def order_by(cls, column):
+        cls_list = cls.get_all()
+        cls_list = [i.__dict__ for i in cls_list]
+        return sorted(cls_list, key=lambda i: i[column])
