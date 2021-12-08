@@ -19,7 +19,7 @@ h1 = {'size': (14, 1),
       'justification': 'c',
       'font': ('BioRhyme', 28, 'bold')}
 
-h2 = {'size': (10, 1),
+h2 = {'size': (11, 1),
       'font': ("Sora", 14, 'bold')}
 
 p = {'font': ("Sora", 14),
