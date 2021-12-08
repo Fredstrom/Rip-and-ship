@@ -4,6 +4,7 @@ from application.dll.mongo.models.sub_models import Customer
 
 def create_customer(orders: list, customer: dict):
     if orders:
+        customer['orders'] = []
         for order in orders:
             customer['orders'].append(order)
     customer = Customer(**customer)

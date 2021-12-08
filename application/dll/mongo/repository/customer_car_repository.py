@@ -4,6 +4,7 @@ from application.dll.mongo.models.sub_models import CarModel
 
 def create_customer_car(compatible_products: list, customer_car: dict):
     if compatible_products:
+        customer_car['compatible_products'] = []
         for product in compatible_products:
             customer_car['compatible_products'].append(product)
     customer_car = CarModel(**customer_car)

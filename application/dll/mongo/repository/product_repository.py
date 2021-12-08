@@ -5,9 +5,13 @@ from application.dll.mongo.models.sub_models import Product
 
 def create_product(manufacturer, supplier, product):
     if manufacturer:
-        product['manufacturer'] = manufacturer
+        product['manufacturer'] = []
+        for i in manufacturer:
+            product['manufacturer'].append(i)
     if supplier:
-        product['supplier'] = supplier
+        product['supplier'] = []
+        for i in supplier:
+            product['supplier'].append(i)
     product = Product(**product)
     product.save()
 
