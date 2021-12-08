@@ -9,4 +9,4 @@ services:
       - '27099:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INIT_DB_ROOT_PASSWORD: HelloThere
+      MONGO_INITDB_ROOT_PASSWORD: HelloThere
