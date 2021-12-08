@@ -147,8 +147,7 @@ def event_handler():
             if event in (sg.Button, 'Cancel'):
                 edit_order_screen.close()
 
-
-
+        # INVENTORY WINDOW
 
 
 if __name__ == '__main__':

@@ -6,6 +6,10 @@ order_data = [['Test', 'Test', 'test', 'test', 'test'],
               ['Test', 'Test', 'test', 'test', 'test'],
               ['Test', 'Test', 'test', 'test', 'test']]
 
+inventory_data = [['Test', 'Test', 'test', 'test', 'test'],
+              ['Test', 'Test', 'test', 'test', 'test'],
+              ['Test', 'Test', 'test', 'test', 'test']]
+
 data = [['Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
         ['Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
         ['Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
