@@ -3,11 +3,11 @@ from application.dll.mongo.models import Document
 
 
 class CarModel(Document):
-    collection = db.car_models
+    collection = db.cars
 
 
-class ContactPerson(Document):
-    collection = db.contact_persons
+# class ContactPerson(Document):
+#     collection = db.contact_persons
 
 
 class Customer(Document):
@@ -18,16 +18,16 @@ class Employee(Document):
     collection = db.employees
 
 
-class Manufacturer(Document):
-    collection = db.manufacturers
+# class Manufacturer(Document):
+#     collection = db.manufacturers
 
 
-class Office(Document):
-    collection = db.offices
+# class Office(Document):
+#     collection = db.offices
 
 
-class Order(Document):
-    collection = db.orders
+# class Order(Document):
+#     collection = db.orders
 
 
 class Product(Document):
@@ -38,5 +38,6 @@ class Storage(Document):
     collection = db.storages
 
 
-class Supplier(Document):
-    collection = db.suppliers
+# class Supplier(Document):
+#     collection = db.suppliers
+

@@ -19,6 +19,9 @@ class Document(dict, ABC):
             self._id = None
         self.__dict__.update(data)
 
+    def __repr__(self):
+        return '\n'.join(f'{k} = {v}' for k, v in self.__dict__.items())
+
     def save(self):
         if not self._id:
             del self.__dict__['_id']
@@ -33,3 +36,5 @@ class Document(dict, ABC):
     @classmethod
     def find(cls, **kwargs):
         return Result(cls(**item) for item in cls.collection.find(kwargs))
+
+
