@@ -5,13 +5,9 @@ from application.dll.mongo.models.sub_models import Product
 
 def create_product(manufacturer, supplier, product):
     if manufacturer:
-        product['manufacturer'] = []
-        for i in manufacturer:
-            product['manufacturer'].append(i)
+        product['manufacturer'] = [i for i in manufacturer]
     if supplier:
-        product['supplier'] = []
-        for i in supplier:
-            product['supplier'].append(i)
+        product['supplier'] = [i for i in supplier]
     product = Product(**product)
     product.save()
 
@@ -38,3 +34,7 @@ def search_for_product(column: str, search_for) -> list:
 
 def get_all_products() -> list:
     return [product.__dict__ for product in Product.get_all()]
+
+
+def get_product_id(**kwargs) -> list:
+    return Product.get_object_id(**kwargs)

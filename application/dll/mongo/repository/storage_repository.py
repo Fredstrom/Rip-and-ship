@@ -29,3 +29,7 @@ def search_for_storage(column: str, search_for) -> list:
 
 def get_all_storages() -> list:
     return [storage.__dict__ for storage in Storage.get_all()]
+
+
+def get_storage_id(**kwargs) -> list:
+    return Storage.get_object_id(**kwargs)

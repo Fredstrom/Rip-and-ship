@@ -31,3 +31,7 @@ def search_for_employee(column: str, search_for) -> list:
 
 def get_all_employees() -> list:
     return [employee.__dict__ for employee in Employee.get_all()]
+
+
+def get_employee_id(**kwargs) -> list:
+    return Employee.get_object_id(**kwargs)

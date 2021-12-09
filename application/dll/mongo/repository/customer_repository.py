@@ -4,9 +4,7 @@ from application.dll.mongo.models.sub_models import Customer
 
 def create_customer(orders: list, customer: dict):
     if orders:
-        customer['orders'] = []
-        for order in orders:
-            customer['orders'].append(order)
+        customer['orders'] = [order for order in orders]
     customer = Customer(**customer)
     customer.save()
 
@@ -33,3 +31,7 @@ def search_for_customer(column: str, search_for) -> list:
 
 def get_all_customers() -> list:
     return [customer.__dict__ for customer in Customer.get_all()]
+
+
+def get_customer_id(**kwargs) -> list:
+    return Customer.get_object_id(**kwargs)
