@@ -5,6 +5,9 @@ class Result(list):
     def first(self):
         return self[0] if len(self) > 0 else None
 
+    def specified(self, **kwargs):
+        pass
+
     def last(self):
         return self[-1] if len(self) > 0 else None
 
@@ -43,6 +46,8 @@ class Document(dict, ABC):
 
     @classmethod
     def order_by(cls, column):
-        cls_list = cls.get_all()
-        cls_list = [i.__dict__ for i in cls_list]
-        return sorted(cls_list, key=lambda i: i[column])
+        return sorted([item.__dict__ for item in cls.get_all()], key=lambda j: j[column])
+
+    @classmethod
+    def get_object_id(cls, **kwargs):
+        return Result(item.__dict__['_id'] for item in cls.find(**kwargs))

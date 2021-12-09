@@ -7,13 +7,13 @@ def create_storage(storage: dict):
     storage.save()
 
 
-def remove_storage(_id: int):
-    storage = Storage.find(_id=_id).first()
+def remove_storage(**kwargs):
+    storage = Storage.find(**kwargs).first()
     storage.delete()
 
 
-def update_storage(_id: int, column: str, update):
-    storage = Storage.find(_id=_id).first()
+def update_storage(column: str, update, **kwargs):
+    storage = Storage.find(**kwargs).first()
     storage = Storage(**storage.__dict__)
     storage.__setattr__(column, update)
     storage.save()
@@ -29,3 +29,7 @@ def search_for_storage(column: str, search_for) -> list:
 
 def get_all_storages() -> list:
     return [storage.__dict__ for storage in Storage.get_all()]
+
+
+def get_storage_id(**kwargs) -> list:
+    return Storage.get_object_id(**kwargs)

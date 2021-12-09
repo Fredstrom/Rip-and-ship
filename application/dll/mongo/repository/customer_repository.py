@@ -4,19 +4,18 @@ from application.dll.mongo.models.sub_models import Customer
 
 def create_customer(orders: list, customer: dict):
     if orders:
-        for order in orders:
-            customer['orders'].append(order)
+        customer['orders'] = [order for order in orders]
     customer = Customer(**customer)
     customer.save()
 
 
-def remove_customer(_id: int):
-    customer = Customer.find(_id=_id).first()
+def remove_customer(**kwargs):
+    customer = Customer.find(**kwargs).first()
     customer.delete()
 
 
-def update_customer(_id: int, column: str, update):
-    customer = Customer.find(_id=_id).first()
+def update_customer(column: str, update, **kwargs):
+    customer = Customer.find(**kwargs).first()
     customer = Customer(**customer.__dict__)
     customer.__setattr__(column, update)
     customer.save()
@@ -32,3 +31,8 @@ def search_for_customer(column: str, search_for) -> list:
 
 def get_all_customers() -> list:
     return [customer.__dict__ for customer in Customer.get_all()]
+
+
+def get_customer_id(**kwargs) -> list:
+    return Customer.get_object_id(**kwargs)
+

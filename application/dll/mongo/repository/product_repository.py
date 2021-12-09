@@ -5,20 +5,20 @@ from application.dll.mongo.models.sub_models import Product
 
 def create_product(manufacturer, supplier, product):
     if manufacturer:
-        product['manufacturer'] = manufacturer
+        product['manufacturer'] = [i for i in manufacturer]
     if supplier:
-        product['supplier'] = supplier
+        product['supplier'] = [i for i in supplier]
     product = Product(**product)
     product.save()
 
 
-def remove_product(_id: int):
-    product = Product.find(_id=_id).first()
+def remove_product(**kwargs):
+    product = Product.find(**kwargs).first()
     product.delete()
 
 
-def update_product(_id: int, column: str, update):
-    product = Product.find(_id=_id).first()
+def update_product(column: str, update, **kwargs):
+    product = Product.find(**kwargs).first()
     product = Product(**product.__dict__)
     product.__setattr__(column, update)
     product.save()
@@ -34,3 +34,11 @@ def search_for_product(column: str, search_for) -> list:
 
 def get_all_products() -> list:
     return [product.__dict__ for product in Product.get_all()]
+
+
+def get_product_id(**kwargs) -> list:
+    return Product.get_object_id(**kwargs)
+
+
+print(get_product_id(price_in=423))
+
