@@ -9,13 +9,13 @@ def create_employee(office: dict, employee: dict):
     employee.save()
 
 
-def remove_employee(_id: int):
-    employee = Employee.find(_id=_id).first()
+def remove_employee(**kwargs):
+    employee = Employee.find(**kwargs).first()
     employee.delete()
 
 
-def update_employee(_id: int, column: str, update):
-    employee = Employee.find(_id=_id).first()
+def update_employee(column: str, update, **kwargs):
+    employee = Employee.find(**kwargs).first()
     employee = Employee(**employee.__dict__)
     employee.__setattr__(column, update)
     employee.save()

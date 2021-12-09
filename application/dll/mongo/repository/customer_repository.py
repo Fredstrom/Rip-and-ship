@@ -9,13 +9,13 @@ def create_customer(orders: list, customer: dict):
     customer.save()
 
 
-def remove_customer(_id: int):
-    customer = Customer.find(_id=_id).first()
+def remove_customer(**kwargs):
+    customer = Customer.find(**kwargs).first()
     customer.delete()
 
 
-def update_customer(_id: int, column: str, update):
-    customer = Customer.find(_id=_id).first()
+def update_customer(column: str, update, **kwargs):
+    customer = Customer.find(**kwargs).first()
     customer = Customer(**customer.__dict__)
     customer.__setattr__(column, update)
     customer.save()
@@ -35,3 +35,4 @@ def get_all_customers() -> list:
 
 def get_customer_id(**kwargs) -> list:
     return Customer.get_object_id(**kwargs)
+
