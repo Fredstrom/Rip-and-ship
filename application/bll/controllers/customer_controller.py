@@ -1,4 +1,4 @@
-from application.dll.mysql.repository import customer_repository
+from application.dll.mysql_db.repository import customer_repository
 
 
 def create_customer(customer: dict):
@@ -27,3 +27,5 @@ def search_for_customer(column: str, search_for: str) -> list:
 
 def get_all_customer() -> list:
     return customer_repository.get_all_customers()
+
+print(get_all_customer())

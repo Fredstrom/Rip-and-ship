@@ -1,7 +1,8 @@
 import re
 
-from application.dll.mysql.db import session
-from application.dll.mysql.models.personal import Customer
+from application.dll.mysql_db.db import session
+# from application.dll.mysql_db.models.personal import Customer
+from application.dll.mysql_db.models import Customer
 
 
 def create_customer(customer: dict):
@@ -58,3 +59,4 @@ def search_for_customer(column: str, search_for: str) -> list:
 def get_all_customers() -> list:
     customers = session.query(Customer).all()
     return [{i.name: getattr(customer, i.name) for i in customer.__table__.columns} for customer in customers]
+
