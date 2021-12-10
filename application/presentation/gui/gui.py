@@ -7,6 +7,7 @@ data = [
     ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bla bla", "bla bla"],
 
 ]
+
 button = {'size': (10, 2), 'font': ('Helvetica', 15, 'bold')}
 button2 = {'font': ('Helvetica', 12, 'bold')}
 tf = {'size': (10, 1), 'font': ("Helvetica", 12, 'bold')}

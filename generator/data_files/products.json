@@ -18,7 +18,7 @@
 {"product_name":"Spoiler","description":null,"price_in":223},
 {"product_name":"Front spoiler","description":null,"price_in":326},
 {"product_name":"Rear spoiler","description":null,"price_in":164},
-{"product_name":"Rims","description":null,"price_in":372},
+{"product_name":"Rims","price_in":372},
 {"product_name":"Hubcap","description":null,"price_in":107},
 {"product_name":"Tire/Tyre","description":null,"price_in":65},
 {"product_name":"Trim package","description":null,"price_in":274},
