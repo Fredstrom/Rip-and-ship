@@ -14,6 +14,10 @@ data = [['Myra', 'Test', 'Test', 'test', 'test', 'Test', 'test', 'test'],
         ['Meeko', 'Test', 'Test', 'test', 'test', 'Test', 'test'],
         ['Pixel', 'Test', 'Test', 'test', 'test', 'Test', 'test']]
 
+temp = [['Test', 'Test', 'test', 'test', 'test'],
+        ['Test', 'Test', 'test', 'test', 'test'],
+        ['Test', 'Test', 'test', 'test', 'test']]
+
 # Text1
 h1 = {'size': (14, 1),
       'justification': 'c',

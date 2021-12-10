@@ -16,8 +16,8 @@ def event_handler():
     # Windows:
     main_screen, customer_screen, orders_screen, inventory_screen, \
         add_customer_screen, edit_customer_screen, place_order_screen,\
-        edit_order_screen, place_int_order_screen, edit_int_order_screen, update_item_screen, edit_item_screen = \
-        main_menu(), None, None, None, None, None, None, None, None, None, None, None
+        edit_order_screen, place_int_order_screen, edit_int_order_screen, update_item_screen, edit_item_screen, add_item_screen = \
+        main_menu(), None, None, None, None, None, None, None, None, None, None, None, None
 
     selected_row = None
 
@@ -160,17 +160,38 @@ def event_handler():
                 inventory_screen = None
 
             elif event in (sg.Button, 'Place order'):
-                print('Placing order...')
-            elif event in (sg.Button, 'Delete item'):
-                print('deleting')
-            elif event in (sg.Button, 'Update item'):
-                edit_item_screen = edit_item_window(order_data[selected_row])
+                add_item_screen = add_item_window()
+
+            elif event in (sg.Button, 'Delete item') and selected_row is not None:
+                inventory_data.pop(selected_row)
+                inventory_screen.close()
+                inventory_screen = inventory_window()
+
+            elif event in (sg.Button, 'Update item') and selected_row is not None:
+                edit_item_screen = edit_item_window(inventory_data[selected_row])
+
             elif event in (sg.Button, 'Approve orders'):
                 print('Orders approved!')
-            elif event in (sg.Button, 'Delete order'):
-                print('Cancelled')
-            elif event in (sg.Button, 'Edit order'):
-                print('Editing...')
+
+            elif event in (sg.Button, 'Delete order') and selected_row is not None:
+                temp.pop(selected_row)
+                inventory_screen.close()
+                inventory_screen = inventory_window()
+
+            elif event in (sg.Button, 'Edit order') and selected_row is not None:
+                edit_int_order_screen = edit_int_order_window(temp[selected_row])
+
+        if window == add_item_screen:
+            if event in (sg.Button, '-Submit-'):
+                output = [str(values[key]) for key in values]
+                add_item(output)
+                add_item_screen.close()
+                add_item_screen = None
+
+                inventory_screen.close()
+                inventory_screen = inventory_window()
+
+
         if window == place_int_order_screen:
             pass
         if window == update_item_screen:
@@ -183,6 +204,8 @@ def event_handler():
                 edit_item(selected_row, output)
                 edit_item_screen.close()
                 edit_item_screen = None
+
+                inventory_screen.close()
                 inventory_screen = inventory_window()
 
 
