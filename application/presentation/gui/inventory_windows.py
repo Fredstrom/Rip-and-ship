@@ -3,32 +3,47 @@ from variables import *
 
 
 def inventory_window():
-    header_list = ['Units in stock', 'Capacity', 'Product ID', 'Supplier', 'Manufacturer']
+    inv_header_list = ['Units in stock', 'Capacity', 'Product ID', 'Supplier', 'Manufacturer']
+    ord_header_list = ['order id', 'Product name', 'quantity', 'price each', 'total']
     layout = [
 
-        # Huvudrubrik
         [sg.Button('Back', **button2), sg.Text("", **h1), sg.Text('Inventory', **h1), sg.Text("", **h1),
          sg.Button('Search', font=('Sora SemiBold', 12))],
 
-        [sg.Text('Orders', **h2)],
-        [sg.Table(values=inventory_data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
+        # Inventory Table
+        [sg.Table(values=inventory_data, headings=inv_header_list, **table, key='-TABLE-', enable_events=True)],
         [sg.Button('Place order', **button2),
-         sg.Button('Delete order', **button2),
-         sg.Button('Update order', **button2), sg.Text("", **filler)
+         sg.Button('Delete item', **button2),
+         sg.Button('Update item', **button2)
          ],
-        [sg.Text('Pendling orders', **h2)],
-        [sg.Table(values=inventory_data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
 
-        [sg.Button('Place order', **button2),
+        [sg.Text('Pending orders', **h1)],
+        [sg.Table(values=inventory_data, headings=ord_header_list, **table, key='-TABLE-', enable_events=True)],
+
+        [sg.Button('Approve orders', **button2),
          sg.Button('Delete order', **button2),
-         sg.Button('Update order', **button2), sg.Text("", **filler)
+         sg.Button('Edit order', **button2)
          ]
     ]
 
     return sg.Window('Table', layout, **wdw)
 
 
-def place_order_change_customer_window():
-    pass
+def edit_item_window(idx):
+
+    layout = [
+        [sg.Text('Units in stock', **h2), sg.In(default_text=idx[0], key='units_in_stock')],
+        [sg.Text('Capacity: ', **h2), sg.In(default_text=idx[1], key='capacity')],
+        [sg.Text('Price: ', **h2), sg.In(default_text=idx[2], key='price')],
+        [sg.Text('ProductID: ', **h2), sg.In(default_text=idx[3], key='product_id')],
+        [sg.Text('Product Name ', **h2), sg.In(default_text=idx[4], key='product_name')],
+
+        # Bottom row
+        [sg.Text("", **h2), sg.Button('Submit', **button2, key='-EDIT-', bind_return_key=True),
+         sg.Button('Cancel', **button2)]
+    ]
+    return sg.Window('Edit order', layout, size=(500, 600), finalize=True, keep_on_top=True)
+
+
 
 

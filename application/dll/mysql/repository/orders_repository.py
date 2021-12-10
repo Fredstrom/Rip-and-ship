@@ -80,3 +80,6 @@ def create_suppliers_orders_from(supplier_order_from: dict):
     supplier_order_from = SupplierOrdersFrom(**supplier_order_from)
     session.add(supplier_order_from)
     session.commit()
+
+
+

@@ -16,7 +16,8 @@ def event_handler():
     # Windows:
     main_screen, customer_screen, orders_screen, inventory_screen, \
         add_customer_screen, edit_customer_screen, place_order_screen,\
-        edit_order_screen = main_menu(), None, None, None, None, None, None, None
+        edit_order_screen, place_int_order_screen, edit_int_order_screen, update_item_screen, edit_item_screen = \
+        main_menu(), None, None, None, None, None, None, None, None, None, None, None
 
     selected_row = None
 
@@ -72,6 +73,7 @@ def event_handler():
             elif event in (sg.Button, 'Back'):
                 main_screen = main_menu()
                 customer_screen.close()
+                customer_screen = None
 
         #  ADD CUSTOMER SCREEN
         if window == add_customer_screen:
@@ -99,13 +101,13 @@ def event_handler():
             elif event in (sg.Button, 'Cancel'):
                 edit_customer_screen.close()
 
-        if window == inventory_screen:
-            if event in (sg.Button, "Back"):
-                main_screen.un_hide()
-                inventory_screen.close()
-
         # ORDER WINDOW
         if window == orders_screen:
+            if event in (sg.Button, "Back"):
+                main_screen = main_menu()
+                orders_screen.close()
+                orders_screen = None
+
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
 
@@ -148,6 +150,41 @@ def event_handler():
                 edit_order_screen.close()
 
         # INVENTORY WINDOW
+        if window == inventory_screen:
+            if event in '-TABLE-':
+                selected_row = values['-TABLE-'][0]
+
+            if event in (sg.Button, "Back"):
+                main_screen = main_menu()
+                inventory_screen.close()
+                inventory_screen = None
+
+            elif event in (sg.Button, 'Place order'):
+                print('Placing order...')
+            elif event in (sg.Button, 'Delete item'):
+                print('deleting')
+            elif event in (sg.Button, 'Update item'):
+                edit_item_screen = edit_item_window(order_data[selected_row])
+            elif event in (sg.Button, 'Approve orders'):
+                print('Orders approved!')
+            elif event in (sg.Button, 'Delete order'):
+                print('Cancelled')
+            elif event in (sg.Button, 'Edit order'):
+                print('Editing...')
+        if window == place_int_order_screen:
+            pass
+        if window == update_item_screen:
+            pass
+        if window == edit_int_order_screen:
+            pass
+        if window == edit_item_screen:
+            if event in (sg.Button, '-EDIT-'):
+                output = [str(values[key]) for key in values]
+                edit_item(selected_row, output)
+                edit_item_screen.close()
+                edit_item_screen = None
+                inventory_screen = inventory_window()
+
 
 
 if __name__ == '__main__':

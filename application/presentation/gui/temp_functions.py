@@ -19,5 +19,9 @@ def place_order(output):
     order_data.append(output)
 
 
+def edit_item(row, output):
+    inventory_data[row] = output
+
+
 def edit_order(row, output):
     order_data[row] = output

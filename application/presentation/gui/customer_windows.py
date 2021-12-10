@@ -1,9 +1,9 @@
 import PySimpleGUI as sg
 from variables import *
+from application.bll.controllers import customer_controller
 
 
 def customer_window():
-
     header_list = ['First Name', 'Last Name', 'Address', 'City', 'zip-code', 'phone', 'E-mail']
     layout = [
 

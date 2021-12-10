@@ -58,3 +58,4 @@ def search_for_customer(column: str, search_for: str) -> list:
 def get_all_customers() -> list:
     customers = session.query(Customer).all()
     return [{i.name: getattr(customer, i.name) for i in customer.__table__.columns} for customer in customers]
+
