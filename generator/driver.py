@@ -96,7 +96,6 @@ def order_details():
     return od
 
 
-
 def orders():
     ord = []
     orders = session.query(Order).all()
@@ -109,12 +108,6 @@ def orders():
         as_dict['order_details'] = [od for od in order_details()]
         ord.append(as_dict)
     return ord
-
-
-
-
-
-
 
 
 def manufacturers():
@@ -185,7 +178,6 @@ def convert_products():
                 if supplier['supplier_id'] == sp['supplier_id'] and as_dict['product_id'] == sp['product_id']:
                     as_dict['suppliers'].append(supplier)
                     break
-
 
 def storages():
     storages = session.query(Storage).all()
