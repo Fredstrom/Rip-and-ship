@@ -1,3 +1,0 @@
-No dump here!
-
-This is just to make sure the directory structure gets pushed to GIT
