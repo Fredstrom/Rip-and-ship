@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from application.dll.mysql.db import Base
+from application.dll.mysql_db.db import Base
 
 
 class CarModel(Base):
@@ -12,7 +12,7 @@ class CarModel(Base):
     year = Column(Integer, nullable=False)
     model = Column(String(45), nullable=False)
     brand = Column(String(45), nullable=False)
-    customer = relationship = relationship('application.dll.models.personal.Customer', back_populates='cars')
+    customer = relationship = relationship('application.dll.mysql_db.models.personal.Customer', back_populates='cars')
 
 
 class Product(Base):
@@ -22,7 +22,7 @@ class Product(Base):
     product_name = Column(String(45), nullable=False)
     description = Column(String(45))
     price_in = Column(Integer, nullable=False)
-    order_details = relationship('application.dll.models.order.OrderDetail', back_populates='products')
+    order_details = relationship('application.dll.mysql_db.models.order.OrderDetail', back_populates='products')
 
 
 class ProductFitsModel(Base):
@@ -30,6 +30,6 @@ class ProductFitsModel(Base):
 
     product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
     vin_no = Column(Integer, ForeignKey('customer_cars_models.vin_no'), primary_key=True)
-    products = relationship('application.dll.models.car_and_product.Product')
-    cars = relationship('application.dll.models.car_and_product.CarModel')
+    products = relationship('application.dll.mysql_db.models.car_and_product.Product')
+    cars = relationship('application.dll.mysql_db.models.car_and_product.CarModel')
 

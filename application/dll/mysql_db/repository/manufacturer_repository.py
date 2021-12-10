@@ -1,7 +1,8 @@
 import re
 
-from application.dll.mysql.db import session
-from application.dll.mysql.models.company import Manufacturer
+from application.dll.mysql_db.db import session
+# from application.dll.mysql_db.models.company import Manufacturer
+from application.dll.mysql_db.models import Manufacturer
 
 
 def create_manufacturer(manufacturer: dict):

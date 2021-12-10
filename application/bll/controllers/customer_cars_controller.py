@@ -1,4 +1,4 @@
-from application.dll.mysql.repository import customer_car_repository
+from application.dll.mysql_db.repository import customer_car_repository
 
 
 def create_customer_car(customer_car: dict):

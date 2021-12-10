@@ -1,4 +1,4 @@
-from application.dll.mysql.repository import manufacturer_repository
+from application.dll.mysql_db.repository import manufacturer_repository
 
 
 def create_manufacturer(manufacturer: dict):

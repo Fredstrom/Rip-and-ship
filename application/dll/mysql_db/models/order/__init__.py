@@ -1,17 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
-from application.dll.mysql.db import Base
-
-
-class OrderDetail(Base):
-    __tablename__ = 'orderdetails'
-
-    order_id = Column(Integer, ForeignKey('orders.order_id'), primary_key=True)
-    product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    quantity = Column(Integer, nullable=False)
-    price_each = Column(Integer, nullable=False)
-    orders = relationship('Order', back_populates='order_details')
-    products = relationship('application.dll.models.car_and_product.Product', back_populates='order_details')
+from application.dll.mysql_db.db import Base
 
 
 class Order(Base):
@@ -22,9 +11,20 @@ class Order(Base):
     delivery_date = Column(DateTime, nullable=False)
     customer_id = Column(Integer, ForeignKey('customers.customer_id'))
     employee_id = Column(Integer, ForeignKey('employees.employee_id'))
-    customer = relationship('application.dll.models.personal.Customer', back_populates='orders')
-    employee = relationship('application.dll.models.personal.Employee', back_populates='orders')
+    customer = relationship('application.dll.mysql_db.models.personal.Customer', back_populates='orders')
+    employee = relationship('application.dll.mysql_db.models.personal.Employee', back_populates='orders')
     order_details = relationship('OrderDetail')
+
+
+class OrderDetail(Base):
+    __tablename__ = 'orderdetails'
+
+    order_id = Column(Integer, ForeignKey('orders.order_id'), primary_key=True)
+    product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
+    quantity = Column(Integer, nullable=False)
+    price_each = Column(Integer, nullable=False)
+    orders = relationship('Order', back_populates='order_details')
+    products = relationship('application.dll.mysql_db.models.car_and_product.Product', back_populates='order_details')
 
 
 class OrderFromManufacturer(Base):
@@ -32,8 +32,8 @@ class OrderFromManufacturer(Base):
 
     manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
     product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    products = relationship('application.dll.models.car_and_product.Product')
-    manufacturers = relationship('application.dll.models.company.Manufacturer')
+    products = relationship('application.dll.mysql_db.models.car_and_product.Product')
+    manufacturers = relationship('application.dll.mysql_db.models.company.Manufacturer')
 
 
 class OrderFromSupplier(Base):
@@ -41,8 +41,8 @@ class OrderFromSupplier(Base):
 
     supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'), primary_key=True)
     product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    products = relationship('application.dll.models.car_and_model.Product')
-    suppliers = relationship('application.dll.models.company.Supplier')
+    products = relationship('application.dll.mysql_db.models.car_and_model.Product')
+    suppliers = relationship('application.dll.mysql_db.models.company.Supplier')
 
 
 class SupplierOrdersFrom(Base):
@@ -50,6 +50,6 @@ class SupplierOrdersFrom(Base):
 
     manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
     supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'), primary_key=True)
-    manufacturer = relationship('application.dll.models.company.Manufacturer')
-    suppliers = relationship('application.dll.models.company.Supplier')
+    manufacturer = relationship('application.dll.mysql_db.models.company.Manufacturer')
+    suppliers = relationship('application.dll.mysql_db.models.company.Supplier')
 

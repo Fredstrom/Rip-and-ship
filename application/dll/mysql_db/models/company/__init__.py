@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from application.dll.mysql.db import Base
+from application.dll.mysql_db.db import Base
 
 
 class Manufacturer(Base):
@@ -12,7 +12,7 @@ class Manufacturer(Base):
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
-    contact_persons = relationship('application.dll.models.personal.ContactPerson', back_populates='manufacturer')
+    contact_persons = relationship('application.dll.mysql_db.models.personal.ContactPerson', back_populates='manufacturer')
 
 
 class Office(Base):
@@ -23,7 +23,7 @@ class Office(Base):
     address = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     phone = Column(String(45), nullable=False)
-    employee = relationship('application.dll.models.personal.Employee', back_populates='offices')
+    employee = relationship('application.dll.mysql_db.models.personal.Employee', back_populates='offices')
 
 
 class Storage(Base):
@@ -34,7 +34,7 @@ class Storage(Base):
     capacity = Column(Integer, nullable=False)
     TRIGGERS = Column(String(45), nullable=True)
     product_id = Column(Integer, ForeignKey('products.product_id'))
-    products = relationship('application.dll.models.car_and_product.Product')
+    products = relationship('application.dll.mysql_db.models.car_and_product.Product')
 
 
 class Supplier(Base):
@@ -46,6 +46,6 @@ class Supplier(Base):
     city = Column(String(45), nullable=False)
     zip_code = Column(String(45), nullable=False)
     contact_id = Column(Integer, ForeignKey('contact_persons.contact_id'))
-    contact_persons = relationship('application.dll.models.personal.ContactPerson', back_populates='supplier')
+    contact_persons = relationship('application.dll.mysql_db.models.personal.ContactPerson', back_populates='supplier')
 
 
