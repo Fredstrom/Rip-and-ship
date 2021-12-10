@@ -1,7 +1,8 @@
 import re
 
-from application.dll.mysql.db import session
-from application.dll.mysql.models.personal import Employee
+from application.dll.mysql_db.db import session
+# from application.dll.mysql_db.models.personal import Employee
+from application.dll.mysql_db.models import Employee
 
 
 def create_employee(employee: dict):

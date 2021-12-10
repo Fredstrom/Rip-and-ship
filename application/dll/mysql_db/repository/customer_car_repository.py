@@ -1,7 +1,8 @@
 import re
 
-from application.dll.mysql.db import session
-from application.dll.mysql.models.car_and_product import CarModel
+from application.dll.mysql_db.db import session
+# from application.dll.mysql_db.models.car_and_product import CarModel
+from application.dll.mysql_db.models import CarModel
 
 
 def create_customer_car(customer_car: dict):

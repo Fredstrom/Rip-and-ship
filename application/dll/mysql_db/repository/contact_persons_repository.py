@@ -1,7 +1,8 @@
 import re
 
-from application.dll.mysql.db import session
-from application.dll.mysql.models.personal import ContactPerson
+from application.dll.mysql_db.db import session
+# from application.dll.mysql_db.models.personal import ContactPerson
+from application.dll.mysql_db.models import ContactPerson
 
 
 def create_contact_person(contact_person: dict):

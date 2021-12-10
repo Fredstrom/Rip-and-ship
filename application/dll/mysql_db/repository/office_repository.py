@@ -1,7 +1,8 @@
 import re
 
-from application.dll.mysql.db import session
-from application.dll.mysql.models.company import Office
+from application.dll.mysql_db.db import session
+# from application.dll.mysql_db.models.company import Office
+from application.dll.mysql_db.models import Office
 
 
 def create_office(offices: dict):
