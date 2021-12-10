@@ -191,7 +191,6 @@ def event_handler():
                 inventory_screen.close()
                 inventory_screen = inventory_window()
 
-
         if window == place_int_order_screen:
             pass
         if window == update_item_screen:

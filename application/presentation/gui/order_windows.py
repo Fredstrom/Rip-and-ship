@@ -1,16 +1,18 @@
 import PySimpleGUI as sg
 from variables import *
+from application.bll.controllers.orders_controller import *
 
 
 def orders_window():
-    header_list = ['Order ID', 'Customer ID', 'Price', 'Employee', 'Order date']
+    data = [[value for value in d.values()] for d in get_all_orders()]
+    header_list = [key for key in get_all_orders()[0]]
     layout = [
 
         # Row 1
         [sg.Button('Back', **button2), sg.Text("", **h1), sg.Text('Orders', **h1), sg.Text("", **h1), sg.Button('Search', font=('Sora SemiBold', 12))],
 
         # Row 2
-        [sg.Table(values=order_data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
+        [sg.Table(values=data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
 
         # Row 3
         [sg.Button('Place order', **button2),

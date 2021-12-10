@@ -4,17 +4,15 @@ from application.bll.controllers import customer_controller
 
 
 def customer_window():
-    header_list = ['First Name', 'Last Name', 'Address', 'City', 'zip-code', 'phone', 'E-mail']
-    layout = [
+    data = [[value for value in d.values()] for d in get_all_customer()]
+    header_list = [key for key in get_all_customer()[0]]
 
+    layout = [
         # Row 1
         [sg.Button('Back', **button2), sg.Text("", **h1), sg.Text('Customers', **h1), sg.Text("", **h1), sg.Button('Search', font=('Sora SemiBold', 12))],
-
         # Row 2
         [sg.Table(values=data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
-
         # Row 3
-
         [ sg.Button('Add Customer', **button2),
          sg.Button('Remove Customer', **button2),
          sg.Button('Edit Customer', **button2), sg.Text("", **filler)

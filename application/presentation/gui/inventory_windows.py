@@ -1,8 +1,10 @@
 from variables import *
+from application.bll.controllers.storages_controller import *
 
 
 def inventory_window():
-    inv_header_list = ['Units in stock', 'Capacity', 'Product ID', 'Supplier', 'Manufacturer']
+    data = [[value for value in d.values()] for d in get_all_storages()]
+    header_list = [key for key in get_all_storages()[0]]
     ord_header_list = ['order id', 'Product name', 'quantity', 'price each', 'total']
     layout = [
 
@@ -10,7 +12,7 @@ def inventory_window():
          sg.Button('Search', font=('Sora SemiBold', 12))],
 
         # Inventory Table
-        [sg.Table(values=inventory_data, headings=inv_header_list, **table, key='-TABLE-', enable_events=True)],
+        [sg.Table(values=data, headings=header_list, **table, key='-TABLE-', enable_events=True)],
         [sg.Button('Place order', **button2),
          sg.Button('Delete item', **button2),
          sg.Button('Update item', **button2)
