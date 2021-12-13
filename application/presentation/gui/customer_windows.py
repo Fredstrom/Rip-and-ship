@@ -25,8 +25,9 @@ def customer_window():
 def add_customer_window():
     layout = [
 
-        [sg.Text('First Name', **h2), sg.In(key='first_name')],
-        [sg.Text('Last Name:', **h2), sg.In(key='last_name')],
+        [sg.Text('Company Name: ', **h2), sg.In(key='company_name')],
+        [sg.Text('First Name: ', **h2), sg.In(key='first_name')],
+        [sg.Text('Last Name: ', **h2), sg.In(key='last_name')],
         [sg.Text('Address: ', **h2), sg.In(key='address')],
         [sg.Text('City: ', **h2), sg.In(key='city')],
         [sg.Text('Zip-code: ', **h2), sg.In(key='zip_code')],

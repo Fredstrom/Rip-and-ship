@@ -1,8 +1,9 @@
-from temp_functions import *
 from main_menu import *
 from customer_windows import *
 from order_windows import *
 from inventory_windows import *
+from application.bll.controllers.customer_controller import *
+
 
 '''
 Main window for the GUI, containing the Event-handler-loop.
@@ -46,17 +47,18 @@ def event_handler():
         if window == customer_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
+                customer = (get_all_customer()[selected_row]['customer_id'])
 
             if event in (sg.Button, 'Add Customer'):
                 add_customer_screen = add_customer_window()
 
             elif event in (sg.Button, 'Remove Customer') and selected_row is not None:
-                data.pop(selected_row)
+                remove_customer(customer)
                 customer_screen.close()
                 customer_screen = customer_window()
 
             elif event in (sg.Button, 'Edit Customer') and selected_row is not None:
-                edit_customer_screen = edit_customer_window(data[selected_row])
+                edit_customer_screen = edit_customer_window(data[selected_row + 1][0])
 
                 if window == edit_customer_screen:
                     if event in (sg.Button, '-EDIT-'):
@@ -80,7 +82,7 @@ def event_handler():
             # Add Customer
             if event in (sg.Button, '-ADD-'):
                 output = [str(values[key]) for key in values]
-                add_customer(output)
+                print(output)
 
                 add_customer_screen.close()
                 customer_screen.close()
@@ -206,7 +208,6 @@ def event_handler():
 
                 inventory_screen.close()
                 inventory_screen = inventory_window()
-
 
 
 if __name__ == '__main__':

@@ -3,14 +3,6 @@ from application.bll.controllers.customer_controller import get_all_customer
 
 sg.theme('Dark Grey 11')
 
-order_data = [['Test', 'Test', 'test', 'test', 'test'],
-              ['Test', 'Test', 'test', 'test', 'test'],
-              ['Test', 'Test', 'test', 'test', 'test']]
-
-inventory_data = [['Test', 'Test', 'test', 'test', 'test'],
-              ['Test', 'Test', 'test', 'test', 'test'],
-              ['Test', 'Test', 'test', 'test', 'test']]
-
 temp = [['Test', 'Test', 'test', 'test', 'test'],
         ['Test', 'Test', 'test', 'test', 'test'],
         ['Test', 'Test', 'test', 'test', 'test']]
