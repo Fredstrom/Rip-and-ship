@@ -438,6 +438,7 @@ DELIMITER ;;
 
 IF NEW.units_in_stock < (NEW.capacity / 5)
 
+
 THEN INSERT INTO Spare_partsDB.temp_order(shelf_id, quantity, product_id)
 
 VALUES(old.shelf_id, (NEW.capacity / 2), old.product_id);
