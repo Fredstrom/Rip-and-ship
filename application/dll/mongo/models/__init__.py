@@ -15,7 +15,7 @@ class Result(list):
 class Document(dict, ABC):
     collection = None
 
-    def __init__(self, **data):
+    def __init__(self, data):
         super().__init__()
 
         if '_id' not in data:
@@ -38,7 +38,7 @@ class Document(dict, ABC):
 
     @classmethod
     def find(cls, **kwargs):
-        return Result(cls(**item) for item in cls.collection.find(kwargs))
+        return Result(cls(item) for item in cls.collection.find(kwargs))
 
     @classmethod
     def delete(cls, **kwargs):

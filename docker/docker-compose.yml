@@ -10,7 +10,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: HelloThere
     volumes:
-      - '../dump:/dumps'
+      - '../dumps_mongo:/dumps'
 
   mysql:
     image: mysql:latest
@@ -23,4 +23,4 @@ services:
       MYSQL_ROOT_PASSWORD: Hej123
       MYSQL_DATABASE: "Spare_partsDB"
     volumes:
-      - '../scripts/schema.sql:/docker-entrypoint-initdb.d/ripandship.sql'
+      - '../dumps_mysql:/docker-entrypoint-initdb.d/ripandship.sql'

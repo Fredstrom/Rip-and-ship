@@ -3,3 +3,4 @@
 __pycache__/
 db_config.py
 *.pyc
+mysql_to_mongo.py
