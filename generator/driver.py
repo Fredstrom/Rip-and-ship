@@ -194,14 +194,17 @@ def storages():
 
 
 def main():
-    # convert_products()
-    # contact_persons()
-    # manufacturer()
+
+    contact_persons()
+    storages()
+    manufacturers()
+    suppliers()
     # customer_car()
     # customer()
     # employees()
     # offices()
     # orders()
+    convert_products()
 
 if __name__ == '__main__':
     main()
