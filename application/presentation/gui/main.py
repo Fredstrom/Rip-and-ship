@@ -13,12 +13,14 @@ Variables = edit settings for the windows and buttons. (Fonts etc.)
 '''
 
 
+
 def event_handler():
     # Windows:
     main_screen, customer_screen, orders_screen, inventory_screen, \
         add_customer_screen, edit_customer_screen, place_order_screen,\
-        edit_order_screen, place_int_order_screen, edit_int_order_screen, update_item_screen, edit_item_screen, add_item_screen = \
-        main_menu(), None, None, None, None, None, None, None, None, None, None, None, None
+        edit_order_screen, place_int_order_screen, edit_int_order_screen, \
+        update_item_screen, edit_item_screen, add_item_screen, search_cust_screen = \
+        main_menu(), None, None, None, None, None, None, None, None, None, None, None, None, None
 
     selected_row = None
 
@@ -47,42 +49,44 @@ def event_handler():
         if window == customer_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
-                customer = (get_all_customer()[selected_row]['customer_id'])
+                cid = (get_all_customer()[selected_row]['customer_id'])
+
+            if event in (sg.Button, 'Back'):
+                customer_screen.close()
+                customer_screen = None
+                main_screen = main_menu()
 
             if event in (sg.Button, 'Add Customer'):
                 add_customer_screen = add_customer_window()
 
             elif event in (sg.Button, 'Remove Customer') and selected_row is not None:
-                remove_customer(customer)
+                remove_customer(cid)
                 customer_screen.close()
                 customer_screen = customer_window()
 
             elif event in (sg.Button, 'Edit Customer') and selected_row is not None:
-                edit_customer_screen = edit_customer_window(data[selected_row + 1][0])
+                edit_customer_screen = edit_customer_window(get_all_customer()[cid])
 
-                if window == edit_customer_screen:
-                    if event in (sg.Button, '-EDIT-'):
-                        output = [str(values[key]) for key in values]
-                        edit_customer(selected_row, output)
-                        edit_customer_screen.close()
+            elif event in (sg.Button, 'Search'):
+                temp = [key for key in get_all_customer()[0]]
+                search_cust_screen = search_cust_window(temp)
 
-                        customer_screen.close()
-                        customer_screen = customer_window()
+        # SEARCH CUSTOMER
+        if window == search_cust_screen:
+            if event in (sg.Button, 'Search'):
+                results = [[value for value in d.values()]
+                           for d in search_for_customer(str(values['col']), str(values['value']))]
+                search_cust_screen.close()
+                search_cust_screen = search_cust_window(results)
 
-                    elif event in (sg.Button, 'Cancel'):
-                        edit_customer_screen.close()
-
-            elif event in (sg.Button, 'Back'):
-                main_screen = main_menu()
-                customer_screen.close()
-                customer_screen = None
+            if event in (sg.Button, 'Cancel'):
+                search_cust_screen.close()
 
         #  ADD CUSTOMER SCREEN
         if window == add_customer_screen:
             # Add Customer
             if event in (sg.Button, '-ADD-'):
-                output = [str(values[key]) for key in values]
-                print(output)
+                create_customer(values)
 
                 add_customer_screen.close()
                 customer_screen.close()
@@ -93,15 +97,18 @@ def event_handler():
 
         # EDIT CUSTOMER WINDOW
         if window == edit_customer_screen:
-            if event in (sg.Button, '-EDIT-'):
-                output = [str(values[key]) for key in values]
-                edit_customer(selected_row, output)
+            if event in (sg.Button, 'Submit'):
+                col = values['col']
+                value = values['value']
+                update_customer(int(cid), str(col), str(value))
+
                 edit_customer_screen.close()
                 customer_screen.close()
                 customer_screen = customer_window()
 
             elif event in (sg.Button, 'Cancel'):
                 edit_customer_screen.close()
+
 
         # ORDER WINDOW
         if window == orders_screen:

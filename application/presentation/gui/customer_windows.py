@@ -1,7 +1,7 @@
 import PySimpleGUI as sg
 from variables import *
 from application.bll.controllers import customer_controller
-
+from application.bll.controllers.customer_controller import search_for_customer
 
 def customer_window():
     data = [[value for value in d.values()] for d in get_all_customer()]
@@ -40,18 +40,25 @@ def add_customer_window():
     return sg.Window('Add Customer', layout, size=(500, 600), finalize=True, keep_on_top=True)
 
 
-def edit_customer_window(idx):
+def edit_customer_window(cid):
     layout = [
-        [sg.Text('First Name', **h2), sg.In(default_text=idx[0], key='first_name')],
-        [sg.Text('Last Name:', **h2), sg.In(default_text=idx[1], key='last_name')],
-        [sg.Text('Address: ', **h2), sg.In(default_text=idx[2], key='address')],
-        [sg.Text('City: ', **h2), sg.In(default_text=idx[3], key='city')],
-        [sg.Text('Zip-code: ', **h2), sg.In(default_text=idx[4], key='zip_code')],
-        [sg.Text('Phone No: ', **h2), sg.In(default_text=idx[5], key='phone')],
-        [sg.Text('E-mail: ', **h2), sg.In(default_text=idx[6], key='email')],
+            [sg.DropDown(['company_name', 'first_name', 'last_name', 'address', 'city', 'zip_code', 'phone', 'email'],
+                         default_value='company_name', readonly=True, k='col'),
+             sg.In(default_text='Please enter a new value', key='value'),
+             sg.Button('Submit'), sg.Button('Cancel')]]
 
-        # Bottom row
-        [sg.Text("", **h2), sg.Button('Submit', **button2, key='-EDIT-', bind_return_key=True),
-         sg.Button('Cancel', **button2)]
-    ]
-    return sg.Window('Edit Customer', layout, size=(500, 600), finalize=True, keep_on_top=True)
+    return sg.Window(f"Edit Customer ... ", layout, size=(600, 100), finalize=True, keep_on_top=True)
+
+
+def search_cust_window(results):
+    layout = [
+        [sg.DropDown(['first_name', 'last_name', 'address', 'city', 'zip_code', 'phone', 'email'],
+                     default_value='first_name', readonly=True, k='col'),
+         sg.In(default_text='Please enter a new value', key='value'),
+
+         sg.Button('Search'), sg.Button('Cancel')],
+        [sg.Table(values=results, headings=[key for key in get_all_customer()[0]], **table)]]
+
+    return sg.Window("search Customer ... ", layout, size=(1800, 775), finalize=True, keep_on_top=True)
+
+

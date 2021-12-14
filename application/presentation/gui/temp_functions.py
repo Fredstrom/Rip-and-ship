@@ -2,9 +2,6 @@ from variables import *
 from application.bll.controllers.customer_controller import get_all_customer
 
 
-def add_customer(output):
-    data.append(output)
-
 
 def edit_customer(row, output):
     data[row] = output
