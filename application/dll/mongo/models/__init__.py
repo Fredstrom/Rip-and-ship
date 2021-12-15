@@ -32,9 +32,12 @@ class Document(dict, ABC):
         else:
             self.collection.replace_one({'_id': self._id}, self.__dict__)
 
+    def delete_column(self, column: str):
+        self.collection.update_one({'_id': self._id}, {'$unset': {column: ''}})
+
     @classmethod
     def get_all(cls):
-        return [cls(**item) for item in cls.collection.find()]
+        return [cls(item) for item in cls.collection.find()]
 
     @classmethod
     def find(cls, **kwargs):
