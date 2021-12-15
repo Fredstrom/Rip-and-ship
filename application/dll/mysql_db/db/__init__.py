@@ -8,7 +8,7 @@ from application.config.db_config import *
 # )
 
 engine = sqlalchemy.create_engine(
-    f"mysql+mysqlconnector://root:Hej123@localhost:33011/Rip-and-Ship"
+    f"mysql+mysqlconnector://root:Hej123@localhost:33011/Spare_partsDB"
 )
 
 Base = declarative_base()
