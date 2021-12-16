@@ -2,7 +2,7 @@ import re
 from application.dll.mongo.models.sub_models import CarModel, Product
 
 
-def create_customer_car(products: list, customer_car: dict):
+def create_customer_car(customer_car: dict, products=None):
     if products:
         customer_car['compatible_products'] = [product for product in products]
     customer_car = CarModel(**customer_car)
