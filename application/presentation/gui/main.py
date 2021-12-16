@@ -50,7 +50,7 @@ def event_handler():
         if window == customer_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
-                cid = (get_all_customer()[selected_row]['customer_id'])
+                cid = (get_all_customer()[selected_row]['_id'])
 
             if event in (sg.Button, 'Back'):
                 customer_screen.close()
@@ -66,7 +66,7 @@ def event_handler():
                 customer_screen = customer_window()
 
             if event in (sg.Button, 'Edit Customer') and selected_row is not None:
-                edit_customer_screen = edit_customer_window(get_all_customer()[cid])
+                edit_customer_screen = edit_customer_window()
 
             if event in (sg.Button, 'Search'):
                 temp = ['Please choose search filter in the drop-down menu ...']

@@ -35,3 +35,4 @@ def get_all_customers() -> list:
 
 def get_customer_id(**kwargs) -> list:
     return Customer.get_object_id(**kwargs)
+
