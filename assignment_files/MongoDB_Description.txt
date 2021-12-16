@@ -1,2 +1,12 @@
 Beskrivning av vår MongoDB-struktur:
 
+Vi bantade ner de 16 tabeller som vi hade i MySQL till sammanlagt 5 collections i MongoDB.
+Sen gjorde vi oss av med alla MySQL-genererade id:n och kopplade ObjectId:na mellan våra collections och GUI.
+
+cars  - customer_id blev ett objectid av en customer (owner). Kopplingstabellen med vilka produkter som passade vilken bil
+        placerade vi som en array inuti bil-objektet (compatible_products).
+
+customers - Inuti vår customer-collection placerade vi kundens ordrar som en array. Och inuti ordrarna placerades
+            en array med dess orderdetails.
+
+employees -
