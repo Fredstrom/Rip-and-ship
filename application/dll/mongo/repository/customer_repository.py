@@ -5,7 +5,7 @@ from application.dll.mongo.models.sub_models import Customer
 def create_customer(customer: dict, orders=None):
     if orders:
         customer['orders'] = [order for order in orders]
-    customer = Customer(**customer)
+    customer = Customer(customer)
     customer.save()
 
 

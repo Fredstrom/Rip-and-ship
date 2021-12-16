@@ -3,7 +3,7 @@ from application.dll.mongo.models.sub_models import Storage
 
 
 def create_storage(storage: dict):
-    storage = Storage(**storage)
+    storage = Storage(storage)
     storage.save()
 
 

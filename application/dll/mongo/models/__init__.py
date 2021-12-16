@@ -5,9 +5,6 @@ class Result(list):
     def first(self):
         return self[0] if len(self) > 0 else None
 
-    def specified(self, **kwargs):
-        pass
-
     def last(self):
         return self[-1] if len(self) > 0 else None
 
