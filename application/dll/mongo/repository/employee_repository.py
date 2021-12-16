@@ -14,9 +14,9 @@ def remove_employee(**kwargs):
     employee.delete()
 
 
-def update_employee(column: str, update, **kwargs):
-    employee = Employee.find(**kwargs).first()
-    employee = Employee(**employee.__dict__)
+def update_employee(column: str, update, _id):
+    employee = Employee.find(_id=_id).first()
+    employee = Employee(employee.__dict__)
     employee.__setattr__(column, update)
     employee.save()
 
@@ -33,5 +33,5 @@ def get_all_employees() -> list:
     return [employee.__dict__ for employee in Employee.get_all()]
 
 
-def get_employee_id(**kwargs) -> list:
+def get_employee_by_id(**kwargs) -> list:
     return Employee.get_object_id(**kwargs)

@@ -1,5 +1,5 @@
 import re
-from application.dll.mongo.models.sub_models import CarModel, Product
+from application.dll.mongo.models.sub_models import CarModel
 
 
 def create_customer_car(customer_car: dict, products=None):
@@ -14,9 +14,9 @@ def remove_customer_car(vin_no: str):
     car.delete()
 
 
-def update_customer_car(column: str, update, **kwargs):
-    car = CarModel.find(**kwargs).first()
-    car = CarModel(**car.__dict__)
+def update_customer_car(column: str, update, _id):
+    car = CarModel.find(_id=_id).first()
+    car = CarModel(car.__dict__)
     car.__setattr__(column, update)
     car.save()
 
@@ -25,7 +25,7 @@ def order_by_customer_car(column: str) -> list:
     return [car for car in CarModel.order_by(column)]
 
 
-def search_for_customer_cars(column: str, search_for) -> list:
+def search_for_customer_car(column: str, search_for) -> list:
     return [car.__dict__ for car in CarModel.get_all() if re.search(search_for, getattr(car, column))]
 
 
@@ -33,6 +33,6 @@ def get_all_customer_cars() -> list:
     return [car.__dict__ for car in CarModel.get_all()]
 
 
-def get_customer_car_id(**kwargs) -> list:
+def get_customer_car_by_id(**kwargs) -> list:
     return CarModel.get_object_id(**kwargs)
 

@@ -9,16 +9,16 @@ def remove_customer_car(vin_no: str):
     customer_car_repository.remove_customer_car(vin_no)
 
 
-def update_customer_car(vin_no: str, column: str, update: str):
-    customer_car_repository.update_customer_car(vin_no, column, update)
+def update_customer_car(column: str, update, _id):
+    customer_car_repository.update_customer_car(column, update, _id)
 
 
-def get_customer_car_by_id(vin_no: str) -> dict:
-    return customer_car_repository.get_customer_car_by_id(vin_no)
+def get_customer_car_by_id(**kwargs) -> list:
+    return customer_car_repository.get_customer_car_by_id(**kwargs)
 
 
-def order_by_customer_car(column: str) -> list:
-    return customer_car_repository.order_by_customer_car(column)
+def order_by_customer_car(**kwargs) -> list:
+    return customer_car_repository.order_by_customer_car(**kwargs)
 
 
 def search_for_customer_car(column: str, search_for: str) -> list:
@@ -27,3 +27,4 @@ def search_for_customer_car(column: str, search_for: str) -> list:
 
 def get_all_customers_cars() -> list:
     return customer_car_repository.get_all_customer_cars()
+_id

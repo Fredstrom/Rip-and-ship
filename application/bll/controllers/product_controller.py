@@ -5,16 +5,16 @@ def create_product(product: dict):
     product_repository.create_product(product)
 
 
-def remove_product(_id: int):
-    product_repository.remove_product(_id)
+def remove_product(**kwargs):
+    product_repository.remove_product(**kwargs)
 
 
-def update_product(_id: int, column: str, update: str):
-    product_repository.update_product(_id, column, update)
+def update_product(column: str, update, _id):
+    product_repository.update_product(column, update, _id)
 
 
-def get_product_by_id(_id: int) -> dict:
-    return product_repository.get_product_by_id(_id)
+def get_product_by_id(**kwargs) -> list:
+    return product_repository.get_product_by_id(**kwargs)
 
 
 def order_by_product(column: str) -> list:
@@ -27,9 +27,3 @@ def search_for_product(column: str, search_for: str) -> list:
 
 def get_all_product() -> list:
     return product_repository.get_all_products()
-
-
-def create_product_fit_models(product_fit_model: dict):
-    product_repository.create_product_fit_models(product_fit_model)
-
-
