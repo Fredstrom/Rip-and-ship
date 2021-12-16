@@ -2,7 +2,7 @@ import re
 from application.dll.mongo.models.sub_models import Employee
 
 
-def create_employee(office: dict, employee: dict):
+def create_employee(employee: dict, office=None):
     if office:
         employee['office'] = office
     employee = Employee(**employee)

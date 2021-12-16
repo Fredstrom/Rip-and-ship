@@ -1,14 +1,10 @@
 import sqlalchemy
 from sqlalchemy.orm import declarative_base, sessionmaker
-from application.config.db_config import *
+from application.config.mysqldb_config import *
 
-
-# engine = sqlalchemy.create_engine(
-#     f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
-# )
 
 engine = sqlalchemy.create_engine(
-    f"mysql+mysqlconnector://root:Hej123@localhost:33011/Spare_partsDB"
+    f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 )
 
 Base = declarative_base()

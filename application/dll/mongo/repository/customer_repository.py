@@ -2,7 +2,7 @@ import re
 from application.dll.mongo.models.sub_models import Customer
 
 
-def create_customer(orders: list, customer: dict):
+def create_customer(customer: dict, orders=None):
     if orders:
         customer['orders'] = [order for order in orders]
     customer = Customer(**customer)
@@ -35,5 +35,3 @@ def get_all_customers() -> list:
 
 def get_customer_id(**kwargs) -> list:
     return Customer.get_object_id(**kwargs)
-
-pri

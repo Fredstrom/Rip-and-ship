@@ -1,6 +1,6 @@
 .venv/
 .idea/
 __pycache__/
-db_config.py
+config/
 *.pyc
 mysql_to_mongo.py

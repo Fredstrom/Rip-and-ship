@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from application.config.mongodb_config import *
 
-client = MongoClient('mongodb://root:HelloThere@localhost:27077')
+client = MongoClient(f'mongodb://{USERNAME}:{PASSWORD}@{HOST}:{PORT}')
 db = client.RipAndShipDB

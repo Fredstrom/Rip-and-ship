@@ -1,0 +1,2 @@
+Beskrivning av vår MongoDB-struktur:
+

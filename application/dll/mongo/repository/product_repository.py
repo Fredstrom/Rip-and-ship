@@ -3,7 +3,7 @@ import re
 from application.dll.mongo.models.sub_models import Product
 
 
-def create_product(manufacturer, supplier, product):
+def create_product(product, manufacturer=None, supplier=None):
     if manufacturer:
         product['manufacturer'] = [i for i in manufacturer]
     if supplier:
