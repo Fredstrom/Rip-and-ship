@@ -27,4 +27,3 @@ def search_for_customer_car(column: str, search_for: str) -> list:
 
 def get_all_customers_cars() -> list:
     return customer_car_repository.get_all_customer_cars()
-_id
