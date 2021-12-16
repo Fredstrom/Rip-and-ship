@@ -50,7 +50,7 @@ def event_handler():
         if window == customer_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
-                cid = (get_all_customer()[selected_row]['_id'])
+                cid = (get_all_customer()[selected_row]['customer_id'])
 
             if event in (sg.Button, 'Back'):
                 customer_screen.close()
