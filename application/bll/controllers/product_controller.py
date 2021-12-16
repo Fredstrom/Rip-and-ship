@@ -1,4 +1,4 @@
-from application.dll.mysql_db.repository import product_repository
+from application.dll.mongo.repository import product_repository
 
 
 def create_product(product: dict):

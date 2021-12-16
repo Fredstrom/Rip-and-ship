@@ -1,4 +1,4 @@
-from application.dll.mysql_db.repository import office_repository
+from application.dll.mongo.repository import office_repository
 
 
 def create_office(office: dict):
