@@ -6,7 +6,7 @@ def create_orders(orders: dict):
 
 
 def remove_order(_id: int):
-    orders_repository.create_orders(_id)
+    orders_repository.remove_order(_id)
 
 
 def update_order(_id: int, column: str, update: str):
@@ -46,6 +46,8 @@ def create_suppliers_orders_from(supplier_order_from: dict):
 
 def get_all_temp_orders():
     return orders_repository.get_all_temp_orders()
+
+
 
 
 def remove_temp_orders():
