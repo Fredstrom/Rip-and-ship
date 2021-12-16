@@ -27,5 +27,3 @@ def search_for_customer(column: str, search_for: str) -> list:
 
 def get_all_customer() -> list:
     return customer_repository.get_all_customers()
-
-print(get_all_customer())
