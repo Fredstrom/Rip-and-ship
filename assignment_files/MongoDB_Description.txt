@@ -6,7 +6,19 @@ Sen gjorde vi oss av med alla MySQL-genererade id:n och kopplade ObjectId:na mel
 cars  - customer_id blev ett objectid av en customer (owner). Kopplingstabellen med vilka produkter som passade vilken bil
         placerade vi som en array inuti bil-objektet (compatible_products).
 
-customers - Inuti vår customer-collection placerade vi kundens ordrar som en array. Och inuti ordrarna placerades
+customers - i vår customer-collection placerade vi kundens ordrar som en array, samt inuti ordrarna placerades
             en array med dess orderdetails.
 
-employees -
+employees - den anställdes kontor är inflyttat i dokumenten i denna collection.
+
+products  - här är de flesta ändringarna vi gjort. Varje produkt har en array med dess tillverkare och en array med dess
+            leverantörer. Inuti tillverkarna och leverantörerna hittar med dess kontaktpersoner som är hämtade från
+            contact_person-tabellen.
+
+storages  - den tabell är flyttad rakt av, enda uppdateringen är att produkten är ett objekt istället för det tidigare id:t.
+
+
+
+Kortfattat så tog vi först bort alla kopplingstabeller och la dem inuti rätt, enligt oss, dokument. Sedan tittade vi över
+vilka av de kvarvarande tabellerna som var logiska att behålla och vilka som kunde flytta in i ett annat dokument,
+ex. tillverkarna -> produkten.
