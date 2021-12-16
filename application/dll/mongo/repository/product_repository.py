@@ -8,7 +8,7 @@ def create_product(product, manufacturer=None, supplier=None):
         product['manufacturer'] = [i for i in manufacturer]
     if supplier:
         product['supplier'] = [i for i in supplier]
-    product = Product(**product)
+    product = Product(product)
     product.save()
 
 
