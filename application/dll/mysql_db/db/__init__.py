@@ -7,7 +7,6 @@ engine = sqlalchemy.create_engine(
     f"mysql+mysqlconnector://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
 )
 
-
 Base = declarative_base()
 Session = sessionmaker()
 Session.configure(bind=engine)
