@@ -1,12 +1,7 @@
 import PySimpleGUI as sg
 
 sg.theme("Dark Green 4")
-data = [
-    ["Anders", "Testsson", "Testgatan 1", "024-224934", "Test@epost.se"],
-    ['Berit', "Testberg", 'Storgatan 22', '202192392', 'Berit@telia.se'],
-    ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "bla bla", "bla bla"],
 
-]
 
 button = {'size': (10, 2), 'font': ('Helvetica', 15, 'bold')}
 button2 = {'font': ('Helvetica', 12, 'bold')}

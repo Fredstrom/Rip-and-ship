@@ -1,11 +1,9 @@
 import PySimpleGUI as sg
 from application.bll.controllers.customer_controller import get_all_customer
+from application.bll.controllers.orders_controller import get_all_temp_orders
 
 sg.theme('Dark Grey 11')
 
-temp = [['Test', 'Test', 'test', 'test', 'test'],
-        ['Test', 'Test', 'test', 'test', 'test'],
-        ['Test', 'Test', 'test', 'test', 'test']]
 
 # Text1
 h1 = {'size': (20, 1),
@@ -34,10 +32,11 @@ wdw = {'finalize': 'True',
 
 # Table preset
 table = {'auto_size_columns': 'True',
-         'num_rows': min(15, 25),
+         'num_rows': min(10, 20),
          'font': ("Sora", 12),
          'justification': 'c',
          'expand_y': 'True',
          'expand_x': 'True',
          'alternating_row_color': '#222831'}
+
 

@@ -5,11 +5,11 @@ def create_storages(storage: dict):
     storage_repository.create_storages(storage)
 
 
-def remove_customer(_id: int):
+def remove_storage(_id: int):
     storage_repository.remove_storage(_id)
 
 
-def update_customer(_id: int, column: str, update: str):
+def update_storage(_id: int, column: str, update: str):
     storage_repository.update_storage(_id, column, update)
 
 
@@ -27,3 +27,5 @@ def search_for_storage(column: str, search_for: str) -> list:
 
 def get_all_storages() -> list:
     return storage_repository.get_all_storages()
+
+

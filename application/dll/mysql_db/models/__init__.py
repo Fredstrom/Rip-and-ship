@@ -63,7 +63,6 @@ class Storage(Base):
     shelf_id = Column(Integer, primary_key=True, autoincrement=True)
     units_in_stock = Column(Integer, nullable=False)
     capacity = Column(Integer, nullable=False)
-    TRIGGERS = Column(String(45), nullable=True)
     product_id = Column(Integer, ForeignKey('products.product_id'))
     products = relationship('Product')
 
@@ -171,4 +170,12 @@ class Employee(Base):
     offices = relationship('Office', back_populates='employee')
     orders = relationship('Order', back_populates='employee')
 
+
+class TempOrders(Base):
+    __tablename__ = 'temp_order'
+    shelf_id = Column(Integer, nullable=True)
+    quantity = Column(Integer, nullable=True)
+    total = Column(Integer, nullable=True)
+    product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
+    products = relationship('Product')
 

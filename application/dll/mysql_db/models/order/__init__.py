@@ -53,3 +53,4 @@ class SupplierOrdersFrom(Base):
     manufacturer = relationship('application.dll.mysql_db.models.company.Manufacturer')
     suppliers = relationship('application.dll.mysql_db.models.company.Supplier')
 
+

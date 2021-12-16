@@ -44,3 +44,9 @@ def create_orders_from_suppliers(order_from_supplier: dict):
 def create_suppliers_orders_from(supplier_order_from: dict):
     orders_repository.create_suppliers_orders_from(supplier_order_from)
 
+def get_all_temp_orders():
+    return orders_repository.get_all_temp_orders()
+
+
+def remove_temp_orders():
+    orders_repository.clear_temps()

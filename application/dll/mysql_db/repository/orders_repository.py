@@ -2,9 +2,10 @@ import re
 
 from application.dll.mysql_db.db import session
 # from application.dll.mysql_db.models.order import Order, OrderDetail, OrderFromSupplier,\
-#     OrderFromManufacturer, SupplierOrdersFrom
+#     OrderFromManufacturer, SupplierOrdersFrom,
 from application.dll.mysql_db.models import Order,OrderDetail, OrderFromSupplier,\
-    OrderFromManufacturer, SupplierOrdersFrom
+    OrderFromManufacturer, SupplierOrdersFrom, TempOrders
+
 
 
 def create_orders(orders: dict):
@@ -84,4 +85,11 @@ def create_suppliers_orders_from(supplier_order_from: dict):
     session.commit()
 
 
+def get_all_temp_orders() -> list:
+    temp_orders = session.query(TempOrders).all()
+    return [{i.name: getattr(temporder, i.name) for i in temporder.__table__.columns} for temporder in temp_orders]
 
+def clear_temps():
+    temps = session.query(TempOrders).all()
+    [session.delete(temp) for temp in temps]
+    session.commit()

@@ -43,7 +43,7 @@ def add_customer_window():
     return sg.Window('Add Customer', layout, size=(500, 600), finalize=True, keep_on_top=True)
 
 
-def edit_customer_window(cid):
+def edit_customer_window():
     layout = [
         [sg.DropDown(['company_name', 'first_name', 'last_name', 'address', 'city', 'zip_code', 'phone', 'email'],
                      default_value='company_name', readonly=True, k='col'),
