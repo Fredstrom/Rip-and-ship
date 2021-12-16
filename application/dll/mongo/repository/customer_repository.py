@@ -14,8 +14,8 @@ def remove_customer(**kwargs):
     customer.delete()
 
 
-def update_customer(column: str, update, **kwargs):
-    customer = Customer.find(**kwargs).first()
+def update_customer(column: str, update, _id):
+    customer = Customer.find(_id=_id).first()
     customer = Customer(**customer.__dict__)
     customer.__setattr__(column, update)
     customer.save()
@@ -33,6 +33,6 @@ def get_all_customers() -> list:
     return [customer.__dict__ for customer in Customer.get_all()]
 
 
-def get_customer_id(**kwargs) -> list:
+def get_customer_by_id(**kwargs) -> list:
     return Customer.get_object_id(**kwargs)
 

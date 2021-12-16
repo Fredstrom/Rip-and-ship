@@ -5,16 +5,16 @@ def create_customer(customer: dict):
     customer_repository.create_customer(customer)
 
 
-def remove_customer(_id: int):
-    customer_repository.remove_customer(_id)
+def remove_customer(**kwargs):
+    customer_repository.remove_customer(**kwargs)
 
 
-def update_customer(_id: int, column: str, update: str):
-    customer_repository.update_customer(_id, column, update)
+def update_customer(column: str, update, _id):
+    customer_repository.update_customer(column, update, _id)
 
 
-def get_customer_by_id(_id: int) -> dict:
-    return customer_repository.get_customer_by_id(_id)
+def get_customer_by_id(**kwargs) -> list:
+    return customer_repository.get_customer_by_id(**kwargs)
 
 
 def order_by_customer(column: str) -> list:

@@ -12,9 +12,9 @@ def remove_storage(**kwargs):
     storage.delete()
 
 
-def update_storage(column: str, update, **kwargs):
-    storage = Storage.find(**kwargs).first()
-    storage = Storage(**storage.__dict__)
+def update_storage(column: str, update, _id):
+    storage = Storage.find(_id=_id).first()
+    storage = Storage(storage.__dict__)
     storage.__setattr__(column, update)
     storage.save()
 
@@ -31,5 +31,5 @@ def get_all_storages() -> list:
     return [storage.__dict__ for storage in Storage.get_all()]
 
 
-def get_storage_id(**kwargs) -> list:
+def get_storage_by_id(**kwargs) -> list:
     return Storage.get_object_id(**kwargs)

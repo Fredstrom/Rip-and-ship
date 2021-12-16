@@ -17,9 +17,9 @@ def remove_product(**kwargs):
     product.delete()
 
 
-def update_product(column: str, update, **kwargs):
-    product = Product.find(**kwargs).first()
-    product = Product(**product.__dict__)
+def update_product(column: str, update, _id):
+    product = Product.find(_id=_id).first()
+    product = Product(product.__dict__)
     product.__setattr__(column, update)
     product.save()
 
@@ -36,9 +36,6 @@ def get_all_products() -> list:
     return [product.__dict__ for product in Product.get_all()]
 
 
-def get_product_id(**kwargs) -> list:
+def get_product_by_id(**kwargs) -> list:
     return Product.get_object_id(**kwargs)
-
-
-print(get_product_id(price_in=423))
 

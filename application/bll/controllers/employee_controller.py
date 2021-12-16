@@ -5,16 +5,16 @@ def create_employee(employee: dict):
     employee_repository.create_employee(employee)
 
 
-def remove_employee(_id: int):
-    employee_repository.remove_employee(_id)
+def remove_employee(**kwargs):
+    employee_repository.remove_employee(**kwargs)
 
 
-def update_employee(_id: int, column: str, update: str):
-    employee_repository.update_employee(_id, column, update)
+def update_employee(column: str, update, _id):
+    employee_repository.update_employee(column, update, _id)
 
 
-def get_employee_by_id(_id: int) -> dict:
-    return employee_repository.get_employee_by_id(_id)
+def get_employee_by_id(**kwargs) -> list:
+    return employee_repository.get_employee_by_id(**kwargs)
 
 
 def order_by_employee(column: str) -> list:
