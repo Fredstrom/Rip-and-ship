@@ -1,5 +1,6 @@
 from variables import *
 from application.bll.controllers.storages_controller import *
+from application.bll.controllers.product_controller import *
 
 
 def inventory_window():
@@ -8,8 +9,9 @@ def inventory_window():
     orderdata = [[value for value in d.values()] for d in get_all_temp_orders()]
     header_list = [key for key in get_all_storages()[0]]
     ord_header_list = ['Shelf_id', 'Quantity ordered', 'Total price', 'product_id']
+
     if len(orderdata) == 0:
-        orderdata = ['No Orders Placed Yet']
+        orderdata = ['Not implemented for Mongo']
     layout = [
 
         [sg.Button('Back', **button2), sg.Text("", **h1), sg.Text('Inventory', **h1), sg.Text("", **h1),
@@ -56,6 +58,7 @@ def add_item_window():
     ]
     return sg.Window('Add Customer', layout, size=(500, 600), finalize=True, keep_on_top=True)
 
+
 def search_item_window(results):
     layout = [
         [sg.DropDown(['shelf_id', 'units_in_stock', 'capacity', 'product_id'],
@@ -63,6 +66,5 @@ def search_item_window(results):
          sg.In(default_text='Please enter a new value', key='value'),
          sg.Button('Submit'), sg.Button('Cancel')],
         [sg.Table(values=results, headings=[key for key in get_all_storages()[0]], **table)]]
-
 
     return sg.Window(f"search item ... ", layout, size=(600, 100), finalize=True, keep_on_top=True)

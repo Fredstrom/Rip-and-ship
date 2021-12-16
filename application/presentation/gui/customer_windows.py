@@ -6,7 +6,7 @@ from application.bll.controllers.customer_controller import search_for_customer
 
 def customer_window():
     data = [[value for value in d.values()] for d in get_all_customer()]
-    header_list = [key for key in get_all_customer()[0]]
+    header_list = [key for key in get_all_customer()[2]]
 
     layout = [
         # Row 1
@@ -45,7 +45,15 @@ def add_customer_window():
 
 def edit_customer_window():
     layout = [
-        [sg.DropDown(['company_name', 'first_name', 'last_name', 'address', 'city', 'zip_code', 'phone', 'email'],
+        [sg.DropDown([
+            'company_name',
+            'first_name',
+            'last_name',
+            'address',
+            'city',
+            'zip_code',
+            'phone',
+            'email'],
                      default_value='company_name', readonly=True, k='col'),
          sg.In(default_text='Please enter a new value', key='value'),
          sg.Button('Submit'), sg.Button('Cancel')]]

@@ -1,4 +1,7 @@
 import re
+
+import pymongo
+
 from application.dll.mongo.models.sub_models import Customer
 
 
@@ -9,14 +12,13 @@ def create_customer(customer: dict, orders=None):
     customer.save()
 
 
-def remove_customer(**kwargs):
-    customer = Customer.find(**kwargs).first()
-    customer.delete()
+def remove_customer(_id):
+    customer = Customer.find(_id=_id).first()
 
 
 def update_customer(column: str, update, _id):
     customer = Customer.find(_id=_id).first()
-    customer = Customer(**customer.__dict__)
+    customer = Customer(customer.__dict__)
     customer.__setattr__(column, update)
     customer.save()
 

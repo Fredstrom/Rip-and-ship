@@ -7,8 +7,8 @@ def create_storage(storage: dict):
     storage.save()
 
 
-def remove_storage(**kwargs):
-    storage = Storage.find(**kwargs).first()
+def remove_storage(_id):
+    storage = Storage.find(_id).first()
     storage.delete()
 
 

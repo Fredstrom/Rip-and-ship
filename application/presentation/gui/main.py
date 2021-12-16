@@ -50,7 +50,7 @@ def event_handler():
         if window == customer_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
-                cid = (get_all_customer()[selected_row]['customer_id'])
+                cid = (get_all_customer()[selected_row]['_id'])
 
             if event in (sg.Button, 'Back'):
                 customer_screen.close()
@@ -76,7 +76,7 @@ def event_handler():
         if window == search_cust_screen:
             if event in (sg.Button, 'Search'):
                 results = [[value for value in d.values()]
-                           for d in search_for_customer(str(values['col']), str(values['value']))]
+                           for d in search_for_customer(str(values['col']), (values['value']))]
                 search_cust_screen.close()
                 search_cust_screen = search_cust_window(results)
 
@@ -101,7 +101,7 @@ def event_handler():
             if event in (sg.Button, 'Submit'):
                 col = values['col']
                 value = values['value']
-                update_customer(int(cid), str(col), str(value))
+                update_customer(str(col), str(value), cid)
 
                 edit_customer_screen.close()
                 customer_screen.close()
@@ -115,7 +115,7 @@ def event_handler():
         if window == inventory_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
-                row = (get_all_storages()[selected_row]['shelf_id'])
+                row = (get_all_storages()[selected_row]['_id'])
 
             if event in (sg.Button, 'Search'):
                 search_item_screen = search_item_window(get_all_storages())
@@ -155,7 +155,7 @@ def event_handler():
 # ADD ITEM
         if window == add_item_screen:
             if event in (sg.Button, '-ADD-'):
-                create_storages(values)
+                create_storage(values)
 
                 add_item_screen.close()
                 add_item_screen = None
@@ -168,7 +168,7 @@ def event_handler():
                 col = values['col']
                 value = values['value']
 
-                update_storage(int(row), str(col), str(value))
+                update_storage(col, value, row)
             edit_item_screen.close()
             edit_item_screen = None
 

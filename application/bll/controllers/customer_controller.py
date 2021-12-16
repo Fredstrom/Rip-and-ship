@@ -1,12 +1,12 @@
-from application.dll.mysql_db.repository import customer_repository
+from application.dll.mongo.repository import customer_repository
 
 
 def create_customer(customer: dict):
     customer_repository.create_customer(customer)
 
 
-def remove_customer(**kwargs):
-    customer_repository.remove_customer(**kwargs)
+def remove_customer(_id):
+    customer_repository.remove_customer(_id)
 
 
 def update_customer(column: str, update, _id):
