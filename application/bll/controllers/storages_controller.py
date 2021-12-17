@@ -5,8 +5,8 @@ def create_storage(storage: dict):
     storage_repository.create_storage(storage)
 
 
-def remove_storage(**kwargs):
-    storage_repository.remove_storage(**kwargs)
+def remove_storage(_id):
+    storage_repository.remove_storage(_id)
 
 
 def update_storage(column: str, update, _id):

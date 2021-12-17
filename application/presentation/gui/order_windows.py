@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 from variables import *
 from application.bll.controllers.orders_controller import *
+from datetime import datetime
 
 
 def orders_window():
@@ -26,12 +27,12 @@ def orders_window():
 
 def place_order_window():
     layout = [
+        [sg.Text('Order ID: ', **h2), sg.In(key='order_id')],
+        [sg.Text('Order Date: ', **h2), sg.In(key='order_date', tooltip='Format: YYYY-MM-DD HH:MM:SS')],
+        [sg.Text('Delivery Date: ', **h2), sg.In(key='delivery_date', tooltip='Format: YYYY-MM-DD HH:MM:SS')],
+        [sg.Text('Customer (ID): ', **h2), sg.In(key='customer_id')],
+        [sg.Text('Employee (ID): ', **h2), sg.In(key='employee_id')],
 
-        [sg.Text('Order ID ', **h2), sg.In(key='order_id')],
-        [sg.Text('Customer ID: ', **h2), sg.In(key='customer_id')],
-        [sg.Text('Price: ', **h2), sg.In(key='price')],
-        [sg.Text('Employee: ', **h2), sg.In(key='employee_id')],
-        [sg.Text('Order date: ', **h2), sg.In(key='order_date')],
 
         # Bottom row
         [sg.Text("", **h2), sg.Button('Place order', **button2, key='-PLACE-', bind_return_key=True), sg.Button('Cancel', **button2)]
@@ -40,17 +41,10 @@ def place_order_window():
 
 
 def edit_order_window(idx):
-
     layout = [
-        [sg.Text('Order ID ', **h2), sg.In(default_text=idx[0], key='order_id')],
-        [sg.Text('Customer ID: ', **h2), sg.In(default_text=idx[1], key='customer_id')],
-        [sg.Text('Price: ', **h2), sg.In(default_text=idx[2], key='price')],
-        [sg.Text('Employee: ', **h2), sg.In(default_text=idx[3], key='employee_id')],
-        [sg.Text('Order date: ', **h2), sg.In(default_text=idx[4], key='order_date')],
+        [sg.DropDown(['order_id', 'order_date', 'delivery_date', 'customer_id', 'employee_id'],
+                     default_value='order_id', readonly=True, k='col'),
+         sg.In(default_text='Please enter a new value', key='value'),
+         sg.Button('Submit'), sg.Button('Cancel')]]
 
-        # Bottom row
-        [sg.Text("", **h2), sg.Button('Submit', **button2, key='-EDIT-', bind_return_key=True),
-         sg.Button('Cancel', **button2)]
-    ]
-    return sg.Window('Edit order', layout, size=(500, 600), finalize=True, keep_on_top=True)
-
+    return sg.Window(f"Edit order ... ", layout, size=(600, 100), finalize=True, keep_on_top=True)

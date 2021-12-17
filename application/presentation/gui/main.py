@@ -19,9 +19,9 @@ def event_handler():
     # Windows:
     main_screen, customer_screen, orders_screen, inventory_screen, \
         add_customer_screen, edit_customer_screen, place_order_screen,\
-        edit_order_screen, place_int_order_screen, edit_int_order_screen, \
+        edit_order_screen, remove_order_screen, place_int_order_screen, edit_int_order_screen, \
         update_item_screen, edit_item_screen, add_item_screen, search_cust_screen, search_item_screen = \
-        main_menu(), None, None, None, None, None, None, None, None,None, None, None, None, None, None
+        main_menu(), None, None, None, None, None, None, None, None, None,None, None, None, None, None, None
 
     selected_row = None
 
@@ -76,7 +76,7 @@ def event_handler():
         if window == search_cust_screen:
             if event in (sg.Button, 'Search'):
                 results = [[value for value in d.values()]
-                           for d in search_for_customer(str(values['col']), str(values['value']))]
+                           for d in search_for_customer(str(values['col']), (values['value']))]
                 search_cust_screen.close()
                 search_cust_screen = search_cust_window(results)
 
@@ -101,7 +101,7 @@ def event_handler():
             if event in (sg.Button, 'Submit'):
                 col = values['col']
                 value = values['value']
-                update_customer(int(cid), str(col), str(value))
+                update_customer(str(col), str(value), cid)
 
                 edit_customer_screen.close()
                 customer_screen.close()
@@ -115,7 +115,7 @@ def event_handler():
         if window == inventory_screen:
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
-                row = (get_all_storages()[selected_row]['shelf_id'])
+                row = (get_all_storages()[selected_row]['_id'])
 
             if event in (sg.Button, 'Search'):
                 search_item_screen = search_item_window(get_all_storages())
@@ -138,7 +138,9 @@ def event_handler():
 
             if event in (sg.Button, 'Approve orders'):
                 remove_temp_orders()
-                print('Orders approved!')
+                sg.popup('Thank you for approving the orders, your supplies will be delivered within 3 days.')
+                inventory_screen.close()
+                inventory_screen = inventory_window()
 
             if event in (sg.Button, 'Delete order') and selected_row is not None:
                 inventory_screen.close()
@@ -153,7 +155,7 @@ def event_handler():
 # ADD ITEM
         if window == add_item_screen:
             if event in (sg.Button, '-ADD-'):
-                create_storages(values)
+                create_storage(values)
 
                 add_item_screen.close()
                 add_item_screen = None
@@ -166,7 +168,7 @@ def event_handler():
                 col = values['col']
                 value = values['value']
 
-                update_storage(int(row), str(col), str(value))
+                update_storage(col, value, row)
             edit_item_screen.close()
             edit_item_screen = None
 
@@ -183,24 +185,25 @@ def event_handler():
 
             if event in '-TABLE-':
                 selected_row = values['-TABLE-'][0]
+                oid = (get_all_orders()[selected_row]['order_id'])
 
             if event in (sg.Button, 'Place order'):
                 place_order_screen = place_order_window()
 
             if event in (sg.Button, 'Cancel order') and selected_row is not None:
-                order_data.pop(selected_row)
+                remove_order(oid)
 
                 orders_screen.close()
                 orders_screen = orders_window()
 
             if event in (sg.Button, 'Edit order') and selected_row is not None:
-                edit_order_screen = edit_order_window(order_data[selected_row])
+                edit_order_screen = edit_order_window([oid])
 
         # PLACE ORDER WINDOW
         if window == place_order_screen:
+
             if event in (sg.Button, '-PLACE-'):
-                output = [str(values[key]) for key in values]
-                place_order(output)
+                create_orders(values)
 
                 place_order_screen.close()
                 orders_screen.close()
@@ -211,9 +214,10 @@ def event_handler():
                 place_order_screen.close()
 
         if window == edit_order_screen:
-            if event in (sg.Button, '-EDIT-'):
-                output = [str(values[key]) for key in values]
-                edit_order(selected_row, output)
+            if event in (sg.Button, 'Submit'):
+                col = values['col']
+                value = values['value']
+                update_order(selected_row, col, value)
 
                 edit_order_screen.close()
                 orders_screen.close()
@@ -221,6 +225,7 @@ def event_handler():
 
             if event in (sg.Button, 'Cancel'):
                 edit_order_screen.close()
+
 
 
 
