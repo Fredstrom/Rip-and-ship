@@ -42,7 +42,7 @@ class Document(dict, ABC):
 
     @classmethod
     def delete(cls, **kwargs):
-        cls.collection.delete_many(kwargs)
+        cls.collection.delete_one(kwargs)
 
     @classmethod
     def order_by(cls, column):
