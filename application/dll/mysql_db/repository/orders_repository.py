@@ -1,8 +1,6 @@
 import re
 
 from application.dll.mysql_db.db import session
-# from application.dll.mysql_db.models.order import Order, OrderDetail, OrderFromSupplier,\
-#     OrderFromManufacturer, SupplierOrdersFrom,
 from application.dll.mysql_db.models import Order,OrderDetail, OrderFromSupplier,\
     OrderFromManufacturer, SupplierOrdersFrom, TempOrders
 

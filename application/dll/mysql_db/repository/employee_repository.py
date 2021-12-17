@@ -1,7 +1,6 @@
 import re
 
 from application.dll.mysql_db.db import session
-# from application.dll.mysql_db.models.personal import Employee
 from application.dll.mysql_db.models import Employee
 
 
