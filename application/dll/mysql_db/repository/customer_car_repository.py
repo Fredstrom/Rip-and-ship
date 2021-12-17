@@ -1,7 +1,6 @@
 import re
 
 from application.dll.mysql_db.db import session
-# from application.dll.mysql_db.models.car_and_product import CarModel
 from application.dll.mysql_db.models import CarModel
 
 

@@ -1,7 +1,6 @@
 import re
 
 from application.dll.mysql_db.db import session
-# from application.dll.mysql_db.models.company import Supplier
 from application.dll.mysql_db.models import Supplier
 
 
